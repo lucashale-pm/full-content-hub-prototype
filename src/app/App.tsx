@@ -2,6 +2,7 @@ import { MobileShell } from "../components/MobileShell";
 import { ArticleCard } from "../components/ArticleCard";
 import { VerticalVideoCard } from "../components/VerticalVideoCard";
 import { LandscapeVideoCard } from "../components/LandscapeVideoCard";
+import { FireworkVideoCarousel } from "../components/FireworkVideoCarousel";
 import { BigPreviewCard } from "../components/BigPreviewCard";
 import { loadFeed } from "../content/loadFeed";
 import { useHashRoute } from "./useHashRoute";
@@ -49,6 +50,7 @@ export function App() {
             {videoArticle && <VerticalVideoCard article={videoArticle} author={authorPool[stableAuthorIndex(videoArticle.id)]} />}
             {feed.items.slice(3, 5).map((item, index) => renderStandardCard(item, index + 3))}
             <LandscapeVideoCard title="1666: Amsterdam is a spooky love letter to Assassin's Creed of old | Preview" videoId="Qbfmx-SlRUA" />
+            <FireworkVideoCarousel />
             {feed.items.slice(5, 7).map((item, index) => renderStandardCard(item, index + 5))}
             <BigPreviewCard />
             {feed.items.slice(7, 10).map((item, index) => renderStandardCard(item, index + 7))}
