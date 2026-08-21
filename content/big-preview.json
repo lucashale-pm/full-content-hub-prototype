@@ -1,0 +1,50 @@
+{
+  "id": "marvels-wolverine-big-preview",
+  "type": "bigPreview",
+  "game": "Marvel's Wolverine",
+  "label": "Big Preview",
+  "title": "Marvel's Wolverine: The Big Preview – First hands-on and developer access with the superhero slasher",
+  "strapline": "Our hands-on impressions and developer access explore how Insomniac is shaping Wolverine into a structured, action-centric adventure built around Logan.",
+  "canonicalUrl": "https://www.gamesradar.com/games/action/marvels-wolverine-the-big-preview-hub/",
+  "publishedAt": "2026-08-14T00:00:00Z",
+  "author": {
+    "id": "oscar-taylor-kent",
+    "name": "Oscar Taylor-Kent",
+    "image": "https://cdn.mos.cms.futurecdn.net/tAGBsLp6arrjDpz7yUPZyX.jpg"
+  },
+  "hero": {
+    "url": "https://cdn.mos.cms.futurecdn.net/ToEANNRXTVMetLRndYXEeS-1440-80.jpg.webp",
+    "alt": "Marvel's Wolverine key art for the Big Preview"
+  },
+  "reactionCount": 860,
+  "commentCount": 41,
+  "related": [
+    {
+      "id": "wolverine-xmen-origins-inspiration",
+      "title": "Marvel's Wolverine was inspired by one of the few video game movie tie-ins that doesn't suck: \"We had the same challenges as those devs\"",
+      "strapline": "Insomniac took notes from X-Men Origins: Wolverine while working out how to make Logan's moveset feel authentic.",
+      "author": "Jordan Gerblick",
+      "url": "https://www.gamesradar.com/games/action/marvels-wolverine-was-inspired-by-one-of-the-few-video-game-movie-tie-ins-that-doesnt-suck-we-had-the-same-challenges-as-those-devs/",
+      "reactionCount": 312,
+      "commentCount": 18
+    },
+    {
+      "id": "wolverine-backlash-algorithms",
+      "title": "\"It's a relentless onslaught\": Insomniac community lead calls out social media algorithms for pushing negativity",
+      "strapline": "James Stevenson says the online backlash is not representative of the wider opinion around Wolverine.",
+      "author": "Catherine Lewis",
+      "url": "https://www.gamesradar.com/games/action/its-a-relentless-onslaught-as-marvels-wolverine-faces-backlash-insomniac-community-lead-calls-out-social-media-algorithms-for-pushing-negativity/",
+      "reactionCount": 428,
+      "commentCount": 27
+    },
+    {
+      "id": "wolverine-blood-gore-toggle",
+      "title": "Marvel's Wolverine will make sure squeamish players never have to see blood and gore: \"We don't want to surprise anyone\"",
+      "strapline": "Insomniac explains how its accessibility options can turn off blood, gore, and dismemberment.",
+      "author": "Dustin Bailey",
+      "url": "https://www.gamesradar.com/games/action/marvels-wolverine-will-make-sure-squeamish-players-never-have-to-see-blood-and-gore-we-dont-want-to-surprise-anyone/",
+      "reactionCount": 516,
+      "commentCount": 2
+    }
+  ]
+}
