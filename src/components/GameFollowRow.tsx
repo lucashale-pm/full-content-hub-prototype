@@ -9,7 +9,7 @@ export function GameFollowRow({ game }: GameFollowRowProps) {
 
   return (
     <div className="flex min-w-0 items-center gap-2">
-      <span className="truncate text-[14px] font-bold leading-[17px]">{game}</span>
+      <span className="truncate text-[14px] font-bold leading-[17px] text-[#d3d3d3]">{game}</span>
       <span className="size-[3px] shrink-0 rounded-full bg-current opacity-50" aria-hidden="true" />
       <button
         className="!text-[14px] shrink-0 border-0 bg-transparent p-0 font-bold leading-[17px] text-gr-action"

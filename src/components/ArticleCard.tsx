@@ -35,14 +35,14 @@ export function ArticleCard({ article, author, isSaved = false, isReacted = fals
       <div className="flex flex-col gap-4">
         <header className="flex w-full items-start justify-between gap-3">
           <div className="min-w-0 flex-1">
-            <GameFollowRow game={topic} />
-            <div className="mt-2 flex min-w-0 items-center gap-2.5">
+            <div className="flex min-w-0 items-center gap-2.5">
               <img className="size-8 shrink-0 rounded-full bg-[#ebeae3] object-cover" src={author.image} alt={author.name} loading="lazy" />
               <div className="min-w-0">
                 <span className="truncate text-sm font-bold leading-[17px]">{author.name}</span>
                 {date && <time className="block text-xs leading-[14px] text-gr-muted" dateTime={article.publishedAt ?? undefined}>{date}</time>}
               </div>
             </div>
+            <div className="mt-2"><GameFollowRow game={topic} /></div>
           </div>
           <span className="shrink-0 text-gr-muted" aria-label={isSaved ? "Saved" : "Not saved"}>
             <Bookmark size={18} strokeWidth={2} fill={isSaved ? "currentColor" : "none"} aria-hidden="true" />
