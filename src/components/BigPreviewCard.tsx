@@ -13,7 +13,7 @@ function RelatedPreview({ article }: { article: BigPreviewRelated }) {
   return (
     <article className="flex min-w-[205px] max-w-[225px] flex-col gap-3 snap-start">
       <a className="no-underline" href={article.url} target="_blank" rel="noreferrer">
-        <h3 className="m-0 mt-2 line-clamp-5 text-[16px] font-bold leading-[1.2] tracking-[-0.02em]">{article.title}</h3>
+        <h3 className="m-0 mt-2 line-clamp-5 text-[16px] font-semibold leading-[1.2] tracking-[-0.02em]">{article.title}</h3>
       </a>
       <footer className="flex items-center gap-3 text-xs font-semibold leading-[14px] text-gr-muted">
         <span className="flex items-center gap-1" aria-label={`${article.reactionCount} reactions`}><Heart size={14} strokeWidth={2} aria-hidden="true" /><span>{article.reactionCount}</span></span>
@@ -27,7 +27,7 @@ function RelatedPreview({ article }: { article: BigPreviewRelated }) {
 export function BigPreviewCard() {
   return (
     <article className="w-full border-t-2 border-[#38404e] py-6 text-gr-text" aria-label={bigPreview.title}>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         <header className="flex w-full items-start justify-between gap-3">
           <div className="min-w-0 flex-1">
             <div className="flex min-w-0 items-center gap-2.5">
@@ -37,7 +37,7 @@ export function BigPreviewCard() {
                 <time className="block text-xs leading-[14px] text-gr-muted" dateTime={bigPreview.publishedAt}>{formatDate(bigPreview.publishedAt)}</time>
               </div>
             </div>
-            <div className="mt-2"><GameFollowRow game={bigPreview.game} /></div>
+            <div className="mt-4"><GameFollowRow game={bigPreview.game} /></div>
           </div>
           <span className="shrink-0 text-gr-muted" aria-label="Not saved"><Bookmark size={18} strokeWidth={2} aria-hidden="true" /></span>
         </header>

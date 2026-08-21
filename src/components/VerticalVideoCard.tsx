@@ -23,7 +23,7 @@ export function VerticalVideoCard({ article, author }: VerticalVideoCardProps) {
 
   return (
     <article className="relative w-full border-t-2 border-[#38404e] py-6 text-gr-text" aria-label={article.title}>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
         <header className="flex w-full items-start justify-between gap-3">
           <div className="min-w-0 flex-1">
             <div className="flex min-w-0 items-center gap-2.5">
@@ -33,7 +33,7 @@ export function VerticalVideoCard({ article, author }: VerticalVideoCardProps) {
                 {date && <time className="block text-xs leading-[14px] text-gr-muted" dateTime={article.publishedAt ?? undefined}>{date}</time>}
               </div>
             </div>
-            <div className="mt-2"><GameFollowRow game={article.game} /></div>
+            <div className="mt-4"><GameFollowRow game={article.game} /></div>
           </div>
           <span className="shrink-0 text-gr-muted" aria-label="Not saved">
             <Bookmark size={18} strokeWidth={2} aria-hidden="true" />
@@ -41,7 +41,7 @@ export function VerticalVideoCard({ article, author }: VerticalVideoCardProps) {
         </header>
 
         <div>
-          <h2 className="m-0 text-base font-bold leading-[1.3] tracking-[-0.02em]">{article.title}</h2>
+          <h2 className="m-0 text-base font-semibold leading-[1.3] tracking-[-0.02em]">{article.title}</h2>
           {getArticleSummary(article) && <p className="m-0 mt-1.5 text-sm leading-[1.35] text-gr-muted">{getArticleSummary(article)}</p>}
           <a className="mt-1.5 inline-block text-sm font-bold text-gr-action no-underline" href={articleHref} target={article.canonicalUrl ? "_blank" : undefined} rel={article.canonicalUrl ? "noreferrer" : undefined}>
             Click here to read more
