@@ -16,13 +16,12 @@ npm run dev
 - Vite + React + TypeScript + Tailwind CSS.
 - A 430px maximum mobile canvas; desktop is only a centred preview surface.
 - Hash routes (`#/item/<id>`) so direct links work on GitHub Pages.
-- `content/feed.json` is the editable content source. It is intentionally empty
-  until the first supplied article batch arrives.
+- `content/feed.json`, `content/articles.json`, and `content/big-preview.json`
+  hold the editable feed content.
 - `.github/workflows/deploy-pages.yml` builds and deploys the `dist` folder after
   this project is pushed to a repository's `main` branch with GitHub Pages enabled.
 
-## Next implementation pass
+## Publish to GitHub Pages
 
-Define and build the feed cards from the supplied designs, beginning with a standard
-article and a stance item. The existing files in `games-radar-content-hub` remain a
-reference source; this project does not depend on its Twig/Flexi runtime.
+In the repository settings, select **Pages** and set the publishing source to
+**GitHub Actions**. Every push to `main` then builds and deploys the latest version.
