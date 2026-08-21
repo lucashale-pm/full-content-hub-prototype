@@ -48,8 +48,9 @@ export function App() {
           <div className="flex flex-col" aria-label="RPG article feed">
             {feed.items.slice(0, 3).map(renderStandardCard)}
             {videoArticle && <VerticalVideoCard article={videoArticle} author={authorPool[stableAuthorIndex(videoArticle.id)]} />}
-            {feed.items.slice(3, 5).map((item, index) => renderStandardCard(item, index + 3))}
+            {feed.items.slice(3, 4).map((item, index) => renderStandardCard(item, index + 3))}
             <LandscapeVideoCard title="1666: Amsterdam is a spooky love letter to Assassin's Creed of old | Preview" videoId="Qbfmx-SlRUA" />
+            {feed.items.slice(4, 5).map((item, index) => renderStandardCard(item, index + 4))}
             <FireworkVideoCarousel />
             {feed.items.slice(5, 7).map((item, index) => renderStandardCard(item, index + 5))}
             <BigPreviewCard />
