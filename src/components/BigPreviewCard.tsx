@@ -13,7 +13,7 @@ function RelatedPreview({ article }: { article: BigPreviewRelated }) {
   return (
     <article className="flex min-w-[205px] max-w-[225px] flex-col gap-3 snap-start">
       <a className="no-underline" href={article.url} target="_blank" rel="noreferrer">
-        <h3 className="m-0 mt-2 line-clamp-5 text-lg font-bold leading-[1.2] tracking-[-0.02em]">{article.title}</h3>
+        <h3 className="m-0 mt-2 line-clamp-5 text-[16px] font-bold leading-[1.2] tracking-[-0.02em]">{article.title}</h3>
       </a>
       <footer className="flex items-center gap-3 text-xs font-semibold leading-[14px] text-gr-muted">
         <span className="flex items-center gap-1" aria-label={`${article.reactionCount} reactions`}><Heart size={14} strokeWidth={2} aria-hidden="true" /><span>{article.reactionCount}</span></span>
