@@ -4,8 +4,14 @@ interface GameFollowRowProps {
   game: string;
 }
 
+const defaultFollowedGames = new Set([
+  "Persona 3 Reload",
+  "Avowed",
+  "Like a Dragon: Infinite Wealth",
+]);
+
 export function GameFollowRow({ game }: GameFollowRowProps) {
-  const [following, setFollowing] = useState(false);
+  const [following, setFollowing] = useState(() => defaultFollowedGames.has(game));
 
   return (
     <div className="flex min-w-0 items-center gap-2">

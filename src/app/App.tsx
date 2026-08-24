@@ -28,11 +28,16 @@ function stableHash(value: string) {
   return [...value].reduce((hash, character) => ((hash << 5) - hash + character.charCodeAt(0)) | 0, 0);
 }
 
-const demoStateItems = [...feed.items]
-  .sort((left, right) => stableHash(left.sourceId) - stableHash(right.sourceId))
-  .slice(0, 4);
-const savedArticleIds = new Set(demoStateItems.slice(0, 2).map((item) => item.sourceId));
-const reactedArticleIds = new Set(demoStateItems.slice(2, 4).map((item) => item.sourceId));
+const savedArticleIds = new Set([
+  "78JShzv7yFeBLLKPWJ8BHK",
+  "fKtxRfUR98Biq2GM8mni5c",
+  "8Euq3RHT62eTyWc6GsCa45",
+]);
+const reactedArticleIds = new Set([
+  "Q6MgfGevUwVt7VpaMxVGfE",
+  "ptij7nU6MEs5QJoH7XqAdW",
+  "8G7JrMbNmCkpqV5Hju9PTA",
+]);
 
 function stableAuthorIndex(id: string) {
   return Math.abs(stableHash(id)) % authorPool.length;

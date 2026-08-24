@@ -44,6 +44,10 @@ All votes, follows, reactions, comments, engagement-demo state, and membership p
 states are local React state. There is no authentication, persistence, analytics, live
 API, or membership service behind them. Refreshing resets the demo state.
 
+The feed includes a few intentionally seeded followed games plus three saved and three
+reacted article cards. These are presentation defaults only and are defined explicitly
+in `GameFollowRow.tsx` and `App.tsx`.
+
 Remote media is intentionally referenced by HTTPS URL. Firework storyblocks are enabled
 by the scripts in `index.html`; the vertical Stance video is data-driven with an opinion
 `video` object containing its Firework channel and video ID.

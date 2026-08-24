@@ -29,7 +29,9 @@ summary, thumbnail, and lightweight engagement context.
 - Missing date.
 - Supplied author avatar and name.
 - First card without divider; subsequent cards with divider.
-- Two stable-shuffled feed cards render as saved and two different cards render as reacted for demonstration.
+- Three selected feed cards render as saved and three different cards render as reacted
+  for demonstration. The chosen IDs are explicit in `src/app/App.tsx` so the lived-in
+  state remains stable and easy to replace with real user state later.
 - Context variant: a 4:3 full-width image, editorial label, fuller headline, and a
   curated sentence replace the compact thumbnail and extracted article summary.
 
