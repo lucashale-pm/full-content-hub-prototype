@@ -61,6 +61,10 @@ readers add a lightweight local vote or comment.
   state in the dock. Submitting the explanation appends it to the local comment thread.
 - The confirmation action scrolls to the discussion instead of creating a second comment
   destination.
+- Comments are a local Reddit-style tree: comments may provide an optional `parentId`,
+  replies are visually indented, and each comment exposes a local Reply action.
+- The collapsed engagement dock includes a MessageCircle quicklink that scrolls directly
+  to the threaded comments section.
 
 ## Constraints
 
@@ -94,5 +98,7 @@ local callbacks rather than embedding Helldivers-specific copy or counts.
 
 - Production needs identity, moderation, persistence, and analytics before submissions
   can be published beyond this local prototype.
+- Threaded comments currently support one local tree with unlimited visual nesting, but
+  do not yet include sorting, collapse controls, voting on comments, or moderation.
 - Test the delayed-entry threshold and the wording of the compact prompt against reader
   completion and contribution quality.

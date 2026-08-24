@@ -117,6 +117,7 @@
         },
         {
           "id": "comment-3",
+          "parentId": "comment-1",
           "author": { "name": "HeavyArmorMain", "initials": "HA" },
           "postedAt": "31m ago",
           "body": "Heavy armor finally working changes more than people are giving it credit for. My squad has already shifted its approach.",
@@ -124,6 +125,7 @@
         },
         {
           "id": "comment-4",
+          "parentId": "comment-2",
           "author": { "name": "PixelMedic", "initials": "PM" },
           "postedAt": "44m ago",
           "body": "The Breaker recoil is fine. Reducing the magazine at the same time was the part that felt unnecessary.",
@@ -131,6 +133,7 @@
         },
         {
           "id": "comment-5",
+          "parentId": "comment-1",
           "author": { "name": "Kestrel", "initials": "KE" },
           "postedAt": "56m ago",
           "body": "Diversity is good, but you cannot force it by making every viable choice feel worse overnight.",
@@ -138,6 +141,7 @@
         },
         {
           "id": "comment-6",
+          "parentId": "comment-2",
           "author": { "name": "MinaS", "initials": "MS" },
           "postedAt": "1h ago",
           "body": "Our group tried flamethrowers and EATs all evening. It was chaotic, but genuinely more cooperative.",
@@ -145,6 +149,7 @@
         },
         {
           "id": "comment-7",
+          "parentId": "comment-1",
           "author": { "name": "Talon-7", "initials": "T7" },
           "postedAt": "1h ago",
           "body": "Balance patches should give us a reason to experiment, not a reason to stop playing the hardest missions for a week.",

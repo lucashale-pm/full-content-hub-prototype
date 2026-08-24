@@ -186,6 +186,7 @@ export interface StanceVoteOption {
 
 export interface StanceComment {
   id: string;
+  parentId?: string;
   author: StanceProfile;
   postedAt: string;
   body: string;

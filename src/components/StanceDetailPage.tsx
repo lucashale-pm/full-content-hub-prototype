@@ -13,9 +13,42 @@ function formatCount(value: number) {
   return new Intl.NumberFormat("en-GB").format(value);
 }
 
+function CommentThread({
+  comment,
+  comments,
+  depth = 0,
+  onReply,
+}: {
+  comment: StanceComment;
+  comments: StanceComment[];
+  depth?: number;
+  onReply: (comment: StanceComment) => void;
+}) {
+  const replies = comments.filter((candidate) => candidate.parentId === comment.id);
+
+  return (
+    <article className={`py-4 ${depth > 0 ? "ml-4 border-l border-[#465163] pl-3" : ""}`}>
+      <div className="flex items-center gap-2.5">
+        <StanceAvatar profile={comment.author} size="sm" />
+        <div>
+          <span className="block text-sm font-bold leading-[17px]">{comment.author.name}</span>
+          <span className="text-xs leading-[14px] text-gr-muted">{comment.postedAt}</span>
+        </div>
+      </div>
+      <p className="m-0 mt-3 text-sm leading-[1.45] text-gr-subtle">{comment.body}</p>
+      <div className="mt-3 flex items-center gap-4 text-xs font-semibold text-gr-muted">
+        <span className="inline-flex items-center gap-1"><ThumbsUp size={13} aria-hidden="true" />{comment.likes}</span>
+        <button className="border-0 bg-transparent p-0 text-xs font-semibold text-gr-muted hover:text-white" type="button" onClick={() => onReply(comment)}>Reply</button>
+      </div>
+      {replies.map((reply) => <CommentThread key={reply.id} comment={reply} comments={comments} depth={depth + 1} onReply={onReply} />)}
+    </article>
+  );
+}
+
 export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
   const [comments, setComments] = useState<StanceComment[]>(stance.comments);
   const [draft, setDraft] = useState("");
+  const [replyingTo, setReplyingTo] = useState<string>();
   const [following, setFollowing] = useState(false);
   const [membershipOpen, setMembershipOpen] = useState(false);
   const [followingStance, setFollowingStance] = useState(false);
@@ -54,11 +87,12 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
     return () => observer.disconnect();
   }, [engagementDemo]);
 
-  const addViewpoint = useCallback((body: string) => {
+  const addViewpoint = useCallback((body: string, parentId?: string) => {
     setComments((current) => [
       ...current,
       {
         id: `local-comment-${Date.now()}`,
+        parentId,
         author: { name: "You", initials: "YO" },
         postedAt: "Just now",
         body,
@@ -71,8 +105,9 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
     event.preventDefault();
     const body = draft.trim();
     if (!body) return;
-    addViewpoint(body);
+    addViewpoint(body, replyingTo);
     setDraft("");
+    setReplyingTo(undefined);
   }
 
   const setActiveOpinion = useCallback((opinionId: string) => setActiveOpinionId(opinionId), []);
@@ -201,6 +236,12 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
 
       <section id="comments" ref={commentsRef} className="border-t-2 border-[#38404e] py-6" aria-labelledby="comments-title">
         <h2 id="comments-title" className="m-0 text-[20px] font-bold uppercase leading-[26px] tracking-[-0.02em]">Comments</h2>
+        {replyingTo && (
+          <div className="mt-4 flex items-center justify-between gap-3 rounded-3xl bg-[#292f3c] px-3 py-2 text-xs text-gr-muted">
+            <span>Replying to {comments.find((comment) => comment.id === replyingTo)?.author.name}</span>
+            <button className="border-0 bg-transparent p-0 font-semibold text-gr-subtle hover:text-white" type="button" onClick={() => setReplyingTo(undefined)}>Cancel</button>
+          </div>
+        )}
         <form className="mt-4 flex gap-2" onSubmit={submitComment}>
           <label className="sr-only" htmlFor="stance-comment">Add your viewpoint</label>
           <input
@@ -208,7 +249,7 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
             className="min-w-0 flex-1 rounded-3xl border border-[#465163] bg-transparent px-3 py-2 text-sm text-gr-text outline-none placeholder:text-gr-muted focus:border-gr-action"
             value={draft}
             onChange={(event) => setDraft(event.target.value)}
-            placeholder="Add your viewpoint..."
+            placeholder={replyingTo ? "Write a reply..." : "Add your viewpoint..."}
           />
           <button className="inline-flex size-10 shrink-0 items-center justify-center rounded-3xl bg-gr-action text-white" type="submit" aria-label="Post comment">
             <Send size={17} aria-hidden="true" />
@@ -216,18 +257,8 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
         </form>
 
         <div className="mt-5 divide-y divide-[#38404e]">
-          {comments.map((comment) => (
-            <article key={comment.id} className="py-4 first:pt-0">
-              <div className="flex items-center gap-2.5">
-                <StanceAvatar profile={comment.author} size="sm" />
-                <div>
-                  <span className="block text-sm font-bold leading-[17px]">{comment.author.name}</span>
-                  <span className="text-xs leading-[14px] text-gr-muted">{comment.postedAt}</span>
-                </div>
-              </div>
-              <p className="m-0 mt-3 text-sm leading-[1.45] text-gr-subtle">{comment.body}</p>
-              <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-gr-muted"><ThumbsUp size={13} aria-hidden="true" />{comment.likes}</span>
-            </article>
+          {comments.filter((comment) => !comment.parentId).map((comment) => (
+            <CommentThread key={comment.id} comment={comment} comments={comments} onReply={(reply) => setReplyingTo(reply.id)} />
           ))}
         </div>
       </section>

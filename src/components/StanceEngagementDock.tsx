@@ -1,4 +1,4 @@
-import { ChevronDown, Check, Scale, Send } from "lucide-react";
+import { ChevronDown, Check, MessageCircle, Scale, Send } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { StanceOpinion, StanceRecord } from "../content/types";
 import type { OpinionReaction } from "./OpinionReactionRow";
@@ -67,15 +67,25 @@ export function StanceEngagementDock({
     <aside className="pointer-events-none fixed inset-x-0 bottom-4 z-50 mx-auto flex w-full max-w-[430px] justify-center px-4" aria-label="Stance engagement">
       <div className="pointer-events-auto w-full">
         {!expanded ? (
-          <button
-            className="mx-auto flex max-w-full items-center gap-2 rounded-full border border-[#4a5568] bg-[#151515]/95 px-4 py-2.5 text-left shadow-lg shadow-black/40 backdrop-blur"
-            type="button"
-            onClick={() => setExpanded(true)}
-          >
-            <Scale size={16} className="shrink-0 text-[#DC361A]" aria-hidden="true" />
-            <span className="truncate text-xs font-bold text-white">{activeContext}</span>
-            <span className="shrink-0 text-xs font-semibold text-[#ff8d4b]">Take a side</span>
-          </button>
+          <div className="mx-auto flex max-w-full items-center gap-2">
+            <button
+              className="flex min-w-0 flex-1 items-center gap-2 rounded-full border border-[#4a5568] bg-[#151515]/95 px-4 py-2.5 text-left shadow-lg shadow-black/40 backdrop-blur"
+              type="button"
+              onClick={() => setExpanded(true)}
+            >
+              <Scale size={16} className="shrink-0 text-[#DC361A]" aria-hidden="true" />
+              <span className="truncate text-xs font-bold text-white">{activeContext}</span>
+              <span className="shrink-0 text-xs font-semibold text-[#ff8d4b]">Take a side</span>
+            </button>
+            <button
+              className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-[#4a5568] bg-[#151515]/95 text-gr-subtle shadow-lg shadow-black/40 backdrop-blur hover:text-white"
+              type="button"
+              aria-label="Jump to comments"
+              onClick={onViewComments}
+            >
+              <MessageCircle size={17} aria-hidden="true" />
+            </button>
+          </div>
         ) : (
           <div className="rounded-3xl border border-[#4a5568] bg-[#151515]/98 p-4 shadow-2xl shadow-black/60 backdrop-blur" role="dialog" aria-label="Share your stance">
             <div className="flex items-start justify-between gap-3">
