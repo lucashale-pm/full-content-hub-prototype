@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>GamesRadar RPG</title>
+  </head>
+  <body>
+    <script>
+      const path = window.location.pathname;
+      const marker = "/stance/";
+      const markerIndex = path.indexOf(marker);
+      const basePath = markerIndex >= 0 ? path.slice(0, markerIndex) : "/";
+      const query = window.location.search;
+      const hash = window.location.hash;
+      const redirect = `${path}${query}${hash}`;
+      window.location.replace(`${basePath}?redirect=${encodeURIComponent(redirect)}`);
+    </script>
+  </body>
+</html>

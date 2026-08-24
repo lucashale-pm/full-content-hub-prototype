@@ -47,7 +47,7 @@ export function FeaturedArticleCard({ article, author }: FeaturedArticleCardProp
         </header>
 
         {hero && (
-          <a className="block aspect-[16/9] overflow-hidden rounded-2xl no-underline" href={articleHref} target={article.canonicalUrl ? "_blank" : undefined} rel={article.canonicalUrl ? "noreferrer" : undefined}>
+          <a className="block aspect-[16/9] overflow-hidden rounded-3xl no-underline" href={articleHref} target={article.canonicalUrl ? "_blank" : undefined} rel={article.canonicalUrl ? "noreferrer" : undefined}>
             <img className="size-full object-cover" src={hero.url} alt={hero.alt} loading="lazy" />
           </a>
         )}

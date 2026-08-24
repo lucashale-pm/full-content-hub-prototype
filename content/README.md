@@ -19,6 +19,9 @@ The app uses local content only; it never fetches an API or live feed.
 - `big-preview.json` stores the separate Marvel's Wolverine package: its lead article,
   supplied hero image, author, and three related live article links for the horizontal
   “Related” rail.
+- `stances.json` stores the editorial primer, verified opinions, local vote seed data,
+  and seeded comments for each Stance detail page. Add another record to support a
+  second Stance without changing the components.
 
 When a new export arrives, replace the source snapshot and run `npm run normalize:feed`.
 Do not hand-edit `articles.json`; edit the source export or the normalizer instead.

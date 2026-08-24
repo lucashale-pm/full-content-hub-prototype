@@ -61,7 +61,7 @@ export function ArticleCard({ article, author, isSaved = false, isReacted = fals
               {getArticleSummary(article) && <p className="m-0 mt-1.5 line-clamp-2 text-sm leading-[1.35] text-gr-muted">{getArticleSummary(article)}</p>}
             </div>
             {article.thumbnail && (
-              <div className="size-[72px] shrink-0 overflow-hidden rounded-xl bg-[#252525]">
+              <div className="size-[72px] shrink-0 overflow-hidden rounded-md bg-[#252525]">
                 <img className="size-full object-cover" src={article.thumbnail.url} alt={article.thumbnail.alt || article.title} loading="lazy" />
               </div>
             )}

@@ -49,7 +49,7 @@ export function BigPreviewCard() {
         <div>
           <p className="m-0 text-xs font-bold uppercase leading-[14px] text-gr-subtle">{bigPreview.label}</p>
           <a className="no-underline" href={bigPreview.canonicalUrl} target="_blank" rel="noreferrer">
-            <h2 className="m-0 mt-2 text-2xl font-extrabold leading-[1.2] tracking-[-0.03em]">{bigPreview.title}</h2>
+            <h2 className="m-0 mt-2 text-2xl font-semibold leading-[1.2] tracking-[-0.03em]">{bigPreview.title}</h2>
           </a>
           <p className="m-0 mt-2 text-sm leading-[1.4] text-gr-muted">{bigPreview.strapline}</p>
         </div>

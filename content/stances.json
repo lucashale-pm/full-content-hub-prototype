@@ -1,0 +1,136 @@
+{
+  "stances": [
+    {
+      "id": "helldivers-2-railgun-balance",
+      "featuredOpinionId": "brandon-routh",
+      "label": "New Stance",
+      "game": "Helldivers 2",
+      "topic": "Stance Dispute",
+      "title": "Did Arrowhead go too far by nerfing the Railgun and Breaker in Helldivers 2?",
+      "author": {
+        "name": "Josh West",
+        "initials": "JW",
+        "role": "GamesRadar Editor-in-Chief",
+        "image": "https://cdn.mos.cms.futurecdn.net/r9TQrTUmNtXVtPpGpqQrdC-140-80.jpg.webp"
+      },
+      "hero": {
+        "url": "https://cdn.mos.cms.futurecdn.net/4nQpxkNVjnLwZpSbPUPmck.jpg",
+        "alt": "Helldivers 2 battle scene"
+      },
+      "publishedLabel": "2h ago",
+      "updatedLabel": "Updated 18m ago",
+      "updateSummary": "2 expert takes added",
+      "commentCount": 1402,
+      "snippet": "Arrowhead's first massive balance patch has hit Super Earth. Are these changes a healthy reset or a punishing overcorrection?",
+      "primer": [
+        "Arrowhead's first massive balance patch has hit the galactic war map, and it is a doozy. While players are celebrating the fact that heavy armor rating values finally reduce damage as intended, a swathe of adjustments has severely handicapped two fan-favorite crutches: the SG-225 Breaker and the RS-422 Railgun. The Railgun saw decreased armor penetration and damage against durable enemy parts, while the Breaker lost magazine capacity and gained recoil.",
+        "The community is fractured: Is this a healthy reset for a stale meta, or a punishing overcorrection that makes high-level play a miserable slog?"
+      ],
+      "opinions": [
+        {
+          "id": "starship-veteran",
+          "addedLabel": "Added 2h ago",
+          "sentiment": "opposing",
+          "label": "Opposing view",
+          "statement": "They broke the only viable anti-tank weapons.",
+          "author": {
+            "name": "StarshipVeteran",
+            "initials": "SV"
+          },
+          "credentials": [
+            { "icon": "medal", "text": "Top 1% Helldivers 2 Playtime" },
+            { "icon": "chart", "text": "950 Hours (Verified Steam Data)" },
+            { "icon": "brain", "text": "GamesRadar Topic Expert: Co-op Shooters" }
+          ],
+          "paragraphs": [
+            "This patch completely misreads how people actually play on Difficulty 8 and 9. The Railgun wasn't overwhelmingly popular because it was inherently broken or overpowered; it was a necessary crutch because the other anti-tank options are simply too slow, clunky, or unreliable when you have three Bile Titans and half a dozen Chargers bearing down on you at extraction. Arrowhead looked at spreadsheet data showing high usage rates and mistook a symptom of terrible alternative weapon balance for the root cause of the problem.",
+            "By nerfing our only reliable tools without significantly buffing sluggish alternatives like the Recoilless Rifle or the Spear, the developers haven't made the game more tactical. Instead, they've just turned high-level missions into an exhausting, unfun kite-fest where players spend more time running in circles waiting for orbital laser cooldowns than actually engaging the enemy. It punishes players for finding the only viable solution to an enemy spawn rate that feels fundamentally overtuned."
+          ]
+        },
+        {
+          "id": "brandon-routh",
+          "addedLabel": "Added 58m ago",
+          "sentiment": "neutral",
+          "label": "Neutral view",
+          "statement": "A painful, but completely necessary, meta reset.",
+          "author": {
+            "name": "Brandon Routh",
+            "initials": "BR",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Brandon_Routh_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg/960px-Brandon_Routh_at_the_2024_Toronto_International_Film_Festival_%28cropped%29.jpg"
+          },
+          "credentials": [
+            { "icon": "mic", "text": "Content Creator" },
+            { "icon": "chart", "text": "#4 Strategy Takes Leaderboard" },
+            { "icon": "trophy", "text": "Former QA Tester" }
+          ],
+          "paragraphs": [
+            "Everyone needs to take a collective breath and look at the bigger picture. Yes, losing the absolute dominance of the Railgun hurts today, but relying on one single support weapon out of a dozen was terrible for the game's long-term health and replayability. We were locked into a stagnant, monolithic meta where four players dropping into a mission with the exact same Breaker/Railgun/Shield pack loadout was the only 'correct' way to play. Ripping this band-aid off now is essential to force the community out of its comfort zone.",
+            "The real story here isn't the nerfs - it's that heavy armor values finally work as intended, meaning players can actually survive hits that would have previously one-shot them. Arrowhead is actively forcing us to rethink our stratagem synergies and rely on actual squad-based teamwork rather than expecting one lone wolf to easily solo five Chargers. It's a rough adjustment period, sure, but shifting the focus back to coordinated, cooperative problem-solving is ultimately what makes this game special."
+          ]
+        }
+      ],
+      "vote": {
+        "title": "Where do you stand?",
+        "options": [
+          { "id": "opposing", "label": "Arrowhead ruined high-level play", "voteCount": 869 },
+          { "id": "supporting", "label": "It was a necessary meta reset", "voteCount": 533 }
+        ]
+      },
+      "commentCta": {
+        "title": "Add your viewpoint",
+        "body": "Have a better argument? Drop into the comment thread below. The most insightful, well-argued counterpoints will be elevated by our editors to the main page above."
+      },
+      "comments": [
+        {
+          "id": "comment-1",
+          "author": { "name": "OrbitDrop", "initials": "OD" },
+          "postedAt": "18m ago",
+          "body": "The pressure on high difficulties is the real issue. I can live without the Railgun if the Spear starts locking on consistently.",
+          "likes": 184
+        },
+        {
+          "id": "comment-2",
+          "author": { "name": "Lena V", "initials": "LV" },
+          "postedAt": "24m ago",
+          "body": "A reset was needed, but both sides are right: the alternatives needed buffs in the same patch.",
+          "likes": 121
+        },
+        {
+          "id": "comment-3",
+          "author": { "name": "HeavyArmorMain", "initials": "HA" },
+          "postedAt": "31m ago",
+          "body": "Heavy armor finally working changes more than people are giving it credit for. My squad has already shifted its approach.",
+          "likes": 77
+        },
+        {
+          "id": "comment-4",
+          "author": { "name": "PixelMedic", "initials": "PM" },
+          "postedAt": "44m ago",
+          "body": "The Breaker recoil is fine. Reducing the magazine at the same time was the part that felt unnecessary.",
+          "likes": 93
+        },
+        {
+          "id": "comment-5",
+          "author": { "name": "Kestrel", "initials": "KE" },
+          "postedAt": "56m ago",
+          "body": "Diversity is good, but you cannot force it by making every viable choice feel worse overnight.",
+          "likes": 69
+        },
+        {
+          "id": "comment-6",
+          "author": { "name": "MinaS", "initials": "MS" },
+          "postedAt": "1h ago",
+          "body": "Our group tried flamethrowers and EATs all evening. It was chaotic, but genuinely more cooperative.",
+          "likes": 58
+        },
+        {
+          "id": "comment-7",
+          "author": { "name": "Talon-7", "initials": "T7" },
+          "postedAt": "1h ago",
+          "body": "Balance patches should give us a reason to experiment, not a reason to stop playing the hardest missions for a week.",
+          "likes": 46
+        }
+      ]
+    }
+  ]
+}

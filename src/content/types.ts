@@ -138,3 +138,73 @@ export interface BigPreviewRecord {
   commentCount: number;
   related: BigPreviewRelated[];
 }
+
+export type StanceSentiment = "opposing" | "neutral" | "supporting";
+
+export interface StanceProfile {
+  name: string;
+  initials: string;
+  role?: string;
+  image?: string;
+}
+
+export interface StanceCredential {
+  icon: "medal" | "chart" | "brain" | "mic" | "trophy";
+  text: string;
+}
+
+export interface StanceOpinion {
+  id: string;
+  addedLabel: string;
+  sentiment: StanceSentiment;
+  label: string;
+  statement: string;
+  author: StanceProfile;
+  credentials: StanceCredential[];
+  paragraphs: string[];
+}
+
+export interface StanceVoteOption {
+  id: "opposing" | "supporting";
+  label: string;
+  voteCount: number;
+}
+
+export interface StanceComment {
+  id: string;
+  author: StanceProfile;
+  postedAt: string;
+  body: string;
+  likes: number;
+}
+
+export interface StanceRecord {
+  id: string;
+  featuredOpinionId?: string;
+  label: string;
+  game: string;
+  topic: string;
+  title: string;
+  author: StanceProfile;
+  hero: RemoteMedia;
+  publishedLabel: string;
+  updatedLabel: string;
+  updateSummary: string;
+  commentCount: number;
+  snippet: string;
+  primer: string[];
+  opinions: StanceOpinion[];
+  vote: {
+    title: string;
+    options: StanceVoteOption[];
+  };
+  commentCta: {
+    title: string;
+    body: string;
+  };
+  comments: StanceComment[];
+}
+
+export interface StanceDocument {
+  stances: StanceRecord[];
+}

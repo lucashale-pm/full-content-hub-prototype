@@ -48,7 +48,7 @@ export function VerticalVideoCard({ article, author }: VerticalVideoCardProps) {
           </a>
         </div>
 
-        <div className="relative aspect-[9/16] w-full overflow-hidden rounded-[28px] bg-[#15171d] [&>fw-storyblock]:block [&>fw-storyblock]:size-full">
+        <div className="relative aspect-[9/16] w-full overflow-hidden rounded-3xl bg-[#15171d] [&>fw-storyblock]:block [&>fw-storyblock]:size-full">
           {storyblock}
         </div>
 

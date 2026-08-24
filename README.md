@@ -15,7 +15,8 @@ npm run dev
 
 - Vite + React + TypeScript + Tailwind CSS.
 - A 430px maximum mobile canvas; desktop is only a centred preview surface.
-- Hash routes (`#/item/<id>`) so direct links work on GitHub Pages.
+- Path routes keep the feed at `/` and Stances at `/stance/<id>`; the Pages fallback
+  preserves direct links for the static deployment.
 - `content/feed.json`, `content/articles.json`, and `content/big-preview.json`
   hold the editable feed content.
 - `.github/workflows/deploy-pages.yml` builds and deploys the `dist` folder after
