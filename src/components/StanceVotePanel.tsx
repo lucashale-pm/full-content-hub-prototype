@@ -2,28 +2,34 @@ import { Scale } from "lucide-react";
 import { useState } from "react";
 import type { StanceRecord } from "../content/types";
 
-type VoteChoice = "opposing" | "supporting";
+export type StanceVoteChoice = "opposing" | "supporting";
 
-export function StanceVotePanel({ vote }: Pick<StanceRecord, "vote">) {
+interface StanceVotePanelProps extends Pick<StanceRecord, "vote"> {
+  selected?: StanceVoteChoice | null;
+  onVote?: (choice: StanceVoteChoice) => void;
+}
+
+export function StanceVotePanel({ vote, selected: controlledSelected, onVote }: StanceVotePanelProps) {
   const opposingOption = vote.options.find((option) => option.id === "opposing");
   const supportingOption = vote.options.find((option) => option.id === "supporting");
-  const [selected, setSelected] = useState<VoteChoice | null>(null);
-  const [counts, setCounts] = useState<Record<VoteChoice, number>>({
+  const [uncontrolledSelected, setUncontrolledSelected] = useState<StanceVoteChoice | null>(null);
+  const selected = controlledSelected ?? uncontrolledSelected;
+  const baseCounts: Record<StanceVoteChoice, number> = {
     opposing: opposingOption?.voteCount ?? 0,
     supporting: supportingOption?.voteCount ?? 0,
-  });
+  };
+  const counts = {
+    opposing: baseCounts.opposing + (selected === "opposing" ? 1 : 0),
+    supporting: baseCounts.supporting + (selected === "supporting" ? 1 : 0),
+  };
   const total = counts.opposing + counts.supporting;
   const opposingPercent = Math.round((counts.opposing / total) * 100);
   const supportingPercent = 100 - opposingPercent;
 
-  function castVote(choice: VoteChoice) {
+  function castVote(choice: StanceVoteChoice) {
     if (choice === selected) return;
-
-    setCounts((current) => {
-      if (!selected) return { ...current, [choice]: current[choice] + 1 };
-      return { ...current, [selected]: current[selected] - 1, [choice]: current[choice] + 1 };
-    });
-    setSelected(choice);
+    if (controlledSelected === undefined) setUncontrolledSelected(choice);
+    onVote?.(choice);
   }
 
   return (

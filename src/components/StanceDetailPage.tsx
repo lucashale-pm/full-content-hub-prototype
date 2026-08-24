@@ -1,10 +1,13 @@
-import { BadgeCheck, Clock3, History, MessageCircle, Send, ThumbsUp } from "lucide-react";
-import { useState } from "react";
+import { BadgeCheck, Clock3, History, Menu, MessageCircle, Send, ThumbsUp, X } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import type { StanceComment, StanceRecord } from "../content/types";
+import type { OpinionReaction } from "./OpinionReactionRow";
 import { StanceAvatar } from "./StanceAvatar";
+import { StanceEngagementDock } from "./StanceEngagementDock";
 import { StanceOpinionCard } from "./StanceOpinionCard";
 import { StanceVotePanel } from "./StanceVotePanel";
+import type { StanceVoteChoice } from "./StanceVotePanel";
 
 function formatCount(value: number) {
   return new Intl.NumberFormat("en-GB").format(value);
@@ -14,12 +17,42 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
   const [comments, setComments] = useState<StanceComment[]>(stance.comments);
   const [draft, setDraft] = useState("");
   const [following, setFollowing] = useState(false);
+  const [engagementDemo, setEngagementDemo] = useState(true);
+  const [engagementMenuOpen, setEngagementMenuOpen] = useState(false);
+  const [engagementVisible, setEngagementVisible] = useState(false);
+  const [activeOpinionId, setActiveOpinionId] = useState<string>();
+  const [opinionReactions, setOpinionReactions] = useState<Record<string, OpinionReaction>>({});
+  const [overallVote, setOverallVote] = useState<StanceVoteChoice | null>(null);
+  const engagementTriggerRef = useRef<HTMLElement>(null);
+  const commentsRef = useRef<HTMLElement>(null);
 
-  function submitComment(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const body = draft.trim();
-    if (!body) return;
+  useEffect(() => {
+    if (!engagementDemo) {
+      setEngagementVisible(false);
+      return;
+    }
 
+    const trigger = engagementTriggerRef.current;
+    if (!trigger) return;
+    if (trigger.getBoundingClientRect().top < window.innerHeight * 0.55) {
+      setEngagementVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setEngagementVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -45% 0px" },
+    );
+    observer.observe(trigger);
+    return () => observer.disconnect();
+  }, [engagementDemo]);
+
+  const addViewpoint = useCallback((body: string) => {
     setComments((current) => [
       ...current,
       {
@@ -30,12 +63,22 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
         likes: 0,
       },
     ]);
+  }, []);
+
+  function submitComment(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const body = draft.trim();
+    if (!body) return;
+    addViewpoint(body);
     setDraft("");
   }
 
+  const setActiveOpinion = useCallback((opinionId: string) => setActiveOpinionId(opinionId), []);
+  const activeOpinion = stance.opinions.find((opinion) => opinion.id === activeOpinionId);
+
   return (
     <article className="w-full text-gr-text">
-      <header>
+      <header className="relative pr-12">
         <p className="m-0 text-xs font-semibold uppercase tracking-[0.1em] text-gr-subtle">
           {stance.game} <span className="px-1.5 text-gr-muted">|</span> {stance.topic}
         </p>
@@ -57,6 +100,37 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs leading-[14px] text-gr-muted">
           <span className="inline-flex items-center gap-1"><Clock3 size={13} aria-hidden="true" />{stance.publishedLabel}</span>
           <span className="inline-flex items-center gap-1"><MessageCircle size={13} aria-hidden="true" />{formatCount(stance.commentCount)} Comments</span>
+        </div>
+
+        <div className="absolute right-0 top-0 z-20">
+          <button
+            className="inline-flex size-9 items-center justify-center rounded-full border border-[#465163] bg-[#20242d] text-gr-subtle transition-colors hover:border-[#6c7890] hover:text-white"
+            type="button"
+            aria-label="Open stance page options"
+            aria-expanded={engagementMenuOpen}
+            aria-controls="stance-page-options"
+            onClick={() => setEngagementMenuOpen((value) => !value)}
+          >
+            {engagementMenuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+          </button>
+          {engagementMenuOpen && (
+            <div id="stance-page-options" className="absolute right-0 top-11 w-60 rounded-3xl border border-[#465163] bg-[#151515] p-3 shadow-xl shadow-black/50" role="menu">
+              <p className="m-0 text-xs font-bold text-gr-subtle">Engagement demo</p>
+              <p className="m-0 mt-1 text-xs leading-[14px] text-gr-muted">Floating prompt and viewpoint reactions</p>
+              <button
+                className={`mt-3 w-full rounded-full px-3 py-2 text-xs font-bold transition-colors ${engagementDemo ? "bg-[#DC361A] text-white" : "bg-[#465163] text-gr-subtle"}`}
+                type="button"
+                role="menuitem"
+                aria-pressed={engagementDemo}
+                onClick={() => {
+                  setEngagementDemo((value) => !value);
+                  setEngagementMenuOpen(false);
+                }}
+              >
+                {engagementDemo ? "Turn demo off" : "Turn demo on"}
+              </button>
+            </div>
+          )}
         </div>
       </header>
 
@@ -84,14 +158,22 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
         </div>
       </section>
 
-      <section className="border-t-2 border-[#38404e] py-6" aria-labelledby="debate-title">
+      <section ref={engagementTriggerRef} className="border-t-2 border-[#38404e] py-6" aria-labelledby="debate-title">
         <h2 id="debate-title" className="m-0 text-[20px] font-bold uppercase leading-[26px] tracking-[-0.02em]">The debate</h2>
         <div className="relative mt-4 flex flex-col gap-5 before:absolute before:bottom-3 before:left-[5px] before:top-3 before:w-px before:bg-[#4b5668]">
-          {stance.opinions.map((opinion) => <StanceOpinionCard key={opinion.id} opinion={opinion} />)}
+          {stance.opinions.map((opinion) => (
+            <StanceOpinionCard
+              key={opinion.id}
+              opinion={opinion}
+              reaction={opinionReactions[opinion.id]}
+              onReact={engagementDemo ? (reaction) => setOpinionReactions((current) => ({ ...current, [opinion.id]: reaction })) : undefined}
+              onEnterView={engagementDemo ? setActiveOpinion : undefined}
+            />
+          ))}
         </div>
       </section>
 
-      <StanceVotePanel vote={stance.vote} />
+      <StanceVotePanel vote={stance.vote} selected={overallVote} onVote={setOverallVote} />
 
       <section className="border-t-2 border-[#38404e] py-6" aria-labelledby="comment-cta-title">
         <h2 id="comment-cta-title" className="m-0 text-[20px] font-bold uppercase leading-[26px] tracking-[-0.02em]">{stance.commentCta.title}</h2>
@@ -102,7 +184,7 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
         </span>
       </section>
 
-      <section id="comments" className="border-t-2 border-[#38404e] py-6" aria-labelledby="comments-title">
+      <section id="comments" ref={commentsRef} className="border-t-2 border-[#38404e] py-6" aria-labelledby="comments-title">
         <h2 id="comments-title" className="m-0 text-[20px] font-bold uppercase leading-[26px] tracking-[-0.02em]">Comments</h2>
         <form className="mt-4 flex gap-2" onSubmit={submitComment}>
           <label className="sr-only" htmlFor="stance-comment">Add your viewpoint</label>
@@ -134,6 +216,18 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
           ))}
         </div>
       </section>
+
+      {engagementDemo && engagementVisible && (
+        <StanceEngagementDock
+          stance={stance}
+          activeOpinion={activeOpinion}
+          activeReaction={activeOpinion ? opinionReactions[activeOpinion.id] : null}
+          selectedVote={overallVote}
+          onVote={setOverallVote}
+          onSubmitViewpoint={addViewpoint}
+          onViewComments={() => commentsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
+        />
+      )}
     </article>
   );
 }

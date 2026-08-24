@@ -1,5 +1,8 @@
 import { BarChart3, Brain, Medal, Mic, Trophy } from "lucide-react";
+import { useEffect, useRef } from "react";
 import type { StanceCredential, StanceOpinion } from "../content/types";
+import { OpinionReactionRow } from "./OpinionReactionRow";
+import type { OpinionReaction } from "./OpinionReactionRow";
 import { StanceAvatar } from "./StanceAvatar";
 
 const credentialIcons = {
@@ -27,12 +30,35 @@ function Credential({ credential }: { credential: StanceCredential }) {
   );
 }
 
-export function StanceOpinionCard({ opinion }: { opinion: StanceOpinion }) {
+interface StanceOpinionCardProps {
+  opinion: StanceOpinion;
+  reaction?: OpinionReaction | null;
+  onReact?: (reaction: OpinionReaction) => void;
+  onEnterView?: (opinionId: string) => void;
+}
+
+export function StanceOpinionCard({ opinion, reaction, onReact, onEnterView }: StanceOpinionCardProps) {
+  const cardRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card || !onEnterView) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) onEnterView(opinion.id);
+      },
+      { threshold: 0.2, rootMargin: "-35% 0px -45% 0px" },
+    );
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, [onEnterView, opinion.id]);
+
   return (
     <div className="relative pl-6">
       <span className="absolute left-0 top-2 size-3 rounded-full bg-[#DC361A] ring-4 ring-[#252934]" aria-hidden="true" />
       <p className="m-0 pb-2 text-xs font-semibold uppercase tracking-[0.08em] text-gr-muted">{opinion.addedLabel}</p>
-      <article className="rounded-3xl border border-[#3b4555] bg-[#292f3c] p-4">
+      <article ref={cardRef} className="rounded-3xl border border-[#3b4555] bg-[#292f3c] p-4">
         <span className={`inline-flex rounded-full border px-2 py-1 text-[11px] font-bold uppercase tracking-[0.06em] ${sentimentStyles[opinion.sentiment]}`}>
           {opinion.label}
         </span>
@@ -50,6 +76,8 @@ export function StanceOpinionCard({ opinion }: { opinion: StanceOpinion }) {
         <div className="mt-4 flex flex-col gap-5 text-[18px] leading-[26px] text-gr-subtle">
           {opinion.paragraphs.map((paragraph) => <p key={paragraph} className="m-0">{paragraph}</p>)}
         </div>
+
+        {onReact && <OpinionReactionRow authorName={opinion.author.name} selected={reaction} onSelect={onReact} />}
       </article>
     </div>
   );
