@@ -11,12 +11,14 @@ import { loadFeed } from "../content/loadFeed";
 import { useHashRoute } from "./useHashRoute";
 import articles from "../../content/articles.json";
 import authors from "../../content/authors.json";
+import editorialContexts from "../../content/editorial-contexts.json";
 import stances from "../../content/stances.json";
-import type { ArticleAuthor, ArticleRecord, StanceDocument } from "../content/types";
+import type { ArticleAuthor, ArticleEditorialContextDocument, ArticleRecord, StanceDocument } from "../content/types";
 
 const feed = loadFeed();
 const articleById = new Map((articles as ArticleRecord[]).map((article) => [article.id, article]));
 const authorPool = authors as ArticleAuthor[];
+const articleEditorialContexts = (editorialContexts as ArticleEditorialContextDocument).contexts;
 const videoArticle = articleById.get(feed.items[10]?.sourceId);
 const stanceRecords = (stances as StanceDocument).stances;
 const leadStance = stanceRecords[0];
@@ -38,7 +40,7 @@ function stableAuthorIndex(id: string) {
 
 function renderStandardCard(item: (typeof feed.items)[number], index: number) {
   const article = articleById.get(item.sourceId);
-  return article ? <ArticleCard key={item.id} article={article} author={authorPool[stableAuthorIndex(article.id)]} isSaved={savedArticleIds.has(article.id)} isReacted={reactedArticleIds.has(article.id)} isFirst={index === 0} /> : null;
+  return article ? <ArticleCard key={item.id} article={article} author={authorPool[stableAuthorIndex(article.id)]} editorialContext={articleEditorialContexts[article.id]} isSaved={savedArticleIds.has(article.id)} isReacted={reactedArticleIds.has(article.id)} isFirst={index === 0} /> : null;
 }
 
 export function App() {

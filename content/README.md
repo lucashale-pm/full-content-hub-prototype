@@ -11,6 +11,9 @@ The app uses local content only; it never fetches an API or live feed.
 - `authors.json` contains the temporary author pool used while the source export does
   not provide individual article authors. Assignment is stable per article ID, so it
   looks varied without changing on every render.
+- `editorial-contexts.json` is an optional article-ID mapping for the richer context-card
+  variant. Each entry has an editorial label and a curated sentence explaining reader
+  value; it should not be generated from the article body.
 - `articles.json` includes deterministic prototype-only `reactionCount` and
   `commentCount` values. They are generated from the article ID and can later be
   replaced with supplied metrics without changing the card component.

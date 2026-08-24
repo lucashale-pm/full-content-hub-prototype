@@ -107,6 +107,15 @@ export interface ArticleRecord {
   contentHtml: string;
 }
 
+export interface ArticleEditorialContext {
+  label: string;
+  copy: string;
+}
+
+export interface ArticleEditorialContextDocument {
+  contexts: Record<string, ArticleEditorialContext>;
+}
+
 export interface ArticleAuthor {
   id: string;
   name: string;
@@ -130,6 +139,7 @@ export interface BigPreviewRecord {
   label: string;
   title: string;
   strapline: string;
+  packageIntro?: string;
   canonicalUrl: string;
   publishedAt: string;
   author: ArticleAuthor;

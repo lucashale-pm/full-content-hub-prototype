@@ -1,5 +1,5 @@
 import { Bookmark, Heart, MessageCircle, Share2 } from "lucide-react";
-import type { ArticleAuthor, ArticleRecord } from "../content/types";
+import type { ArticleAuthor, ArticleEditorialContext, ArticleRecord } from "../content/types";
 import { getArticleSummary } from "../lib/articleText";
 import { GameFollowRow } from "./GameFollowRow";
 
@@ -9,6 +9,7 @@ interface ArticleCardProps {
   isSaved?: boolean;
   isReacted?: boolean;
   isFirst?: boolean;
+  editorialContext?: ArticleEditorialContext;
 }
 
 function formatDate(value: string | null) {
@@ -20,7 +21,7 @@ function formatDate(value: string | null) {
   }).format(new Date(value));
 }
 
-export function ArticleCard({ article, author, isSaved = false, isReacted = false, isFirst = false }: ArticleCardProps) {
+export function ArticleCard({ article, author, isSaved = false, isReacted = false, isFirst = false, editorialContext }: ArticleCardProps) {
   const topic = article.game || article.categories[0] || "RPG";
   const articleHref = article.canonicalUrl || `#/item/${encodeURIComponent(article.id)}`;
   const date = formatDate(article.publishedAt);
@@ -49,24 +50,44 @@ export function ArticleCard({ article, author, isSaved = false, isReacted = fals
           </span>
         </header>
 
-        <div className="flex w-full flex-col gap-0.5">
+        {editorialContext ? (
           <a
-            className="flex w-full items-center gap-4 no-underline"
+            className="block w-full no-underline"
             href={articleHref}
             target={article.canonicalUrl ? "_blank" : undefined}
             rel={article.canonicalUrl ? "noreferrer" : undefined}
           >
-            <div className="min-w-0 flex-1">
-              <h2 className="m-0 line-clamp-2 text-base font-semibold leading-[1.3] tracking-[-0.02em]">{article.title}</h2>
-              {getArticleSummary(article) && <p className="m-0 mt-1.5 line-clamp-2 text-sm leading-[1.35] text-gr-muted">{getArticleSummary(article)}</p>}
-            </div>
             {article.thumbnail && (
-              <div className="size-[72px] shrink-0 overflow-hidden rounded-md bg-[#252525]">
+              <div className="aspect-[4/3] w-full overflow-hidden rounded-md bg-[#252525]">
                 <img className="size-full object-cover" src={article.thumbnail.url} alt={article.thumbnail.alt || article.title} loading="lazy" />
               </div>
             )}
+            <div className={article.thumbnail ? "mt-3" : ""}>
+              <p className="m-0 text-[11px] font-bold uppercase tracking-[0.08em] text-gr-action">{editorialContext.label}</p>
+              <h2 className="m-0 mt-1.5 text-[20px] font-semibold leading-[1.25] tracking-[-0.025em]">{article.title}</h2>
+              <p className="m-0 mt-2 line-clamp-3 text-sm leading-[1.45] text-gr-subtle">{editorialContext.copy}</p>
+            </div>
           </a>
-        </div>
+        ) : (
+          <div className="flex w-full flex-col gap-0.5">
+            <a
+              className="flex w-full items-center gap-4 no-underline"
+              href={articleHref}
+              target={article.canonicalUrl ? "_blank" : undefined}
+              rel={article.canonicalUrl ? "noreferrer" : undefined}
+            >
+              <div className="min-w-0 flex-1">
+                <h2 className="m-0 line-clamp-2 text-base font-semibold leading-[1.3] tracking-[-0.02em]">{article.title}</h2>
+                {getArticleSummary(article) && <p className="m-0 mt-1.5 line-clamp-2 text-sm leading-[1.35] text-gr-muted">{getArticleSummary(article)}</p>}
+              </div>
+              {article.thumbnail && (
+                <div className="size-[72px] shrink-0 overflow-hidden rounded-md bg-[#252525]">
+                  <img className="size-full object-cover" src={article.thumbnail.url} alt={article.thumbnail.alt || article.title} loading="lazy" />
+                </div>
+              )}
+            </a>
+          </div>
+        )}
 
         <footer className="flex w-full items-center pb-0 text-gr-muted">
           <div className="flex items-center gap-3 text-xs font-semibold leading-[14px]">
