@@ -42,9 +42,10 @@ export function FeaturedArticleCard({ article, author }: FeaturedArticleCardProp
           <div className="min-w-0">
             <span className="truncate text-sm font-bold leading-[17px]">{author.name}</span>
             {date && <time className="block text-xs leading-[14px] text-gr-muted" dateTime={article.publishedAt ?? undefined}>{date}</time>}
-            <div className="mt-4"><GameFollowRow game={article.game} /></div>
           </div>
         </header>
+
+        <div className="mt-2"><GameFollowRow game={article.game} /></div>
 
         {hero && (
           <a className="block aspect-[16/9] overflow-hidden rounded-3xl no-underline" href={articleHref} target={article.canonicalUrl ? "_blank" : undefined} rel={article.canonicalUrl ? "noreferrer" : undefined}>
@@ -53,14 +54,10 @@ export function FeaturedArticleCard({ article, author }: FeaturedArticleCardProp
         )}
 
         <div>
-          <p className="m-0 text-xs font-bold uppercase leading-[14px] text-gr-subtle">{article.game}</p>
           <a className="no-underline" href={articleHref} target={article.canonicalUrl ? "_blank" : undefined} rel={article.canonicalUrl ? "noreferrer" : undefined}>
-            <h2 className="m-0 mt-2 text-2xl font-extrabold leading-[1.2] tracking-[-0.03em]">{article.title}</h2>
+            <h2 className="m-0 mt-2 text-2xl font-semibold leading-[1.2] tracking-[-0.03em]">{article.title}</h2>
           </a>
           {getArticleSummary(article) && <p className="m-0 mt-2 text-sm leading-[1.4] text-gr-muted">{getArticleSummary(article)}</p>}
-          <a className="mt-3 inline-block text-sm font-bold text-gr-action no-underline" href={articleHref} target={article.canonicalUrl ? "_blank" : undefined} rel={article.canonicalUrl ? "noreferrer" : undefined}>
-            Read the full feature
-          </a>
         </div>
 
         <footer className="flex w-full items-center text-gr-muted">

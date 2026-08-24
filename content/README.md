@@ -8,6 +8,14 @@ The app uses local content only; it never fetches an API or live feed.
   article blocks, and original HTML body.
 - `feed.json` controls display order and points to records in `articles.json` using
   `sourceId`.
+- The Hub's editor timeline, Stances, hot takes, and reader-versus choice now live in
+  `hub.json`; keep this editorial copy and its ordering out of React components.
+- `hub.json` controls the RPG Hub at `/`: its editorial story references, dated coverage
+  timeline, editor Stances, hot takes, and reader-versus choice. Keep Hub copy and
+  ordering here rather than in `HubPage.tsx`.
+- `last-visit.json` controls the five-screen “Since you were last here” recap takeover.
+  It is intentionally local prototype content and can be replaced with personalized
+  activity data later.
 - `authors.json` contains the temporary author pool used while the source export does
   not provide individual article authors. Assignment is stable per article ID, so it
   looks varied without changing on every render.

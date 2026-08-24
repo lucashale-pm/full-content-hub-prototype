@@ -223,3 +223,55 @@ export interface StanceRecord {
 export interface StanceDocument {
   stances: StanceRecord[];
 }
+
+export interface HubTimelineItem {
+  id: string;
+  date: string;
+  title: string;
+  author: string;
+  quote: string;
+  readLabel: string;
+}
+
+export interface HubStanceComment {
+  id: string;
+  user: string;
+  text: string;
+  likes: number;
+}
+
+export interface HubEditorialStance {
+  id: string;
+  author: StanceProfile;
+  role: string;
+  quote: string;
+  body: string;
+  agreePercent: number;
+  disagreePercent: number;
+  comments: HubStanceComment[];
+}
+
+export interface HubDocument {
+  title: string;
+  description: string;
+  heroArticleId: string;
+  leadArticleId: string;
+  latestArticleIds: string[];
+  timeline: HubTimelineItem[];
+  editorialStances: HubEditorialStance[];
+  hotTakes: Array<{
+    id: string;
+    author: StanceProfile;
+    raters: string;
+    quote: string;
+    ratings: Array<{ id: string; label: string; percent: number }>;
+  }>;
+  versus: {
+    questions: Array<{
+      id: string;
+      title: string;
+      audienceChoiceId: string;
+      options: Array<{ id: string; label: string; image: RemoteMedia; percent: number }>;
+    }>;
+  };
+}

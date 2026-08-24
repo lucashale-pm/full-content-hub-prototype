@@ -7,6 +7,8 @@ import { BigPreviewCard } from "../components/BigPreviewCard";
 import { StanceDetailPage } from "../components/StanceDetailPage";
 import { StanceFeedCard } from "../components/StanceFeedCard";
 import { StanceUpdateCard } from "../components/StanceUpdateCard";
+import { HubPage } from "../components/HubPage";
+import { BackToHubBanner } from "../components/BackToHubBanner";
 import { loadFeed } from "../content/loadFeed";
 import { useHashRoute } from "./useHashRoute";
 import articles from "../../content/articles.json";
@@ -53,7 +55,12 @@ export function App() {
 
   return (
     <MobileShell>
-      <section className="px-4 py-6" aria-live="polite">
+      {route.name === "hub" ? (
+        <section className="px-4" aria-live="polite">
+          <HubPage articles={articleById} authors={authorPool} />
+        </section>
+      ) : (
+        <section className="px-4 py-6" aria-live="polite">
         {route.name === "item" ? (
           <p className="m-0 text-sm leading-6 text-gr-muted">
             Story detail foundation for: {route.id}
@@ -65,6 +72,7 @@ export function App() {
           })()
         ) : (
           <div className="flex flex-col" aria-label="RPG article feed">
+            <BackToHubBanner />
             {feed.items.slice(0, 1).map(renderStandardCard)}
             {leadStance && leadStanceUpdate && <StanceUpdateCard stance={leadStance} opinion={leadStanceUpdate} />}
             {feed.items.slice(1, 3).map((item, index) => renderStandardCard(item, index + 1))}
@@ -79,7 +87,8 @@ export function App() {
             {feed.items.slice(7, 10).map((item, index) => renderStandardCard(item, index + 7))}
           </div>
         )}
-      </section>
+        </section>
+      )}
     </MobileShell>
   );
 }

@@ -1,0 +1,51 @@
+{
+  "updatedLabel": "Since your last visit on Thursday",
+  "backgroundImage": {
+    "url": "https://cdn.mos.cms.futurecdn.net/C5wzYhehVfN6JDHrvSR8vU.jpg",
+    "alt": ""
+  },
+  "updates": [
+    { "type": "NEWS", "age": "2 days ago", "title": "Avowed director says the RPG's combat is still evolving" },
+    { "type": "REVIEW", "age": "3 days ago", "title": "Baldur's Gate 3 still sets the standard for party dynamics" },
+    { "type": "DEBATE", "age": "4 days ago", "title": "Hot debate: Are modern RPGs too easy?" },
+    { "type": "SOCIAL", "age": "5 days ago", "title": "Your comment got 28 upvotes" },
+    { "type": "PREDICTION", "age": "6 days ago", "title": "Prediction: the next RPG breakout is closer than you think" }
+  ],
+  "video": {
+    "title": "The Complete History of Dragon Age",
+    "author": "Marcus Aurel",
+    "views": "142K views",
+    "duration": "24:17",
+    "image": {
+      "url": "https://cdn.mos.cms.futurecdn.net/2uuERWU8p2Xh3EW2kDLnZC.jpg",
+      "alt": "Baldur's Gate 3 party around a campfire"
+    },
+    "shorts": [
+      { "title": "Larian sci-fi RPG leaked?", "views": "45K", "image": { "url": "https://cdn.mos.cms.futurecdn.net/kk8k88eRiAVM4p5Lb2VKAJ.jpg", "alt": "Banishers Ghosts of New Eden" } },
+      { "title": "Dragon Age: The Veilguard", "views": "120K", "image": { "url": "https://cdn.mos.cms.futurecdn.net/yAEaKL4KpHmgUGttbUWHt.jpg", "alt": "Vampire The Masquerade Bloodlines 2" } },
+      { "title": "The build everyone missed", "views": "32K", "image": { "url": "https://cdn.mos.cms.futurecdn.net/DBVHX5zcagLyw7FZbMbzgc.jpg", "alt": "Like a Dragon Infinite Wealth" } }
+    ]
+  },
+  "stance": {
+    "author": { "name": "Josh West", "initials": "JW", "role": "Editor-in-Chief", "image": "https://cdn.mos.cms.futurecdn.net/r9TQrTUmNtXVtPpGpqQrdC-140-80.jpg.webp" },
+    "quote": "Larian Studios shouldn't rush their next project. Baldur's Gate 3 succeeded because it had infinite room to breathe.",
+    "agree": 74,
+    "disagree": 26,
+    "comments": 24
+  },
+  "quiz": {
+    "posted": "Posted 2 days ago",
+    "answered": "2,847 members answered",
+    "question": "Which RPG had the longest development cycle?",
+    "options": ["Diablo IV", "Final Fantasy XV", "Duke Nukem Forever", "Cyberpunk 2077"],
+    "answer": "Final Fantasy XV"
+  },
+  "recap": {
+    "streak": "7 Days",
+    "stats": [
+      { "value": "15", "label": "Stances read" },
+      { "value": "Top 8%", "label": "Contributor rank" },
+      { "value": "3", "label": "New comments" }
+    ]
+  }
+}

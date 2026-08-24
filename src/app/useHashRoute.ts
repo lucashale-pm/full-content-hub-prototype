@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 
-export type Route = { name: "feed" } | { name: "item"; id: string } | { name: "stance"; id: string };
+export type Route = { name: "hub" } | { name: "feed" } | { name: "item"; id: string } | { name: "stance"; id: string };
 
 function readRoute(): Route {
   const redirectPath = new URLSearchParams(window.location.search).get("redirect");
   const pathname = redirectPath ? new URL(redirectPath, window.location.origin).pathname : window.location.pathname;
   const stanceMatch = pathname.match(/(?:^|\/)stance\/([^/]+)$/);
   if (stanceMatch) return { name: "stance", id: decodeURIComponent(stanceMatch[1]) };
+  if (/(?:^|\/)feed\/?$/.test(pathname)) return { name: "feed" };
 
   const match = window.location.hash.match(/^#\/item\/([^/]+)$/);
-  return match ? { name: "item", id: decodeURIComponent(match[1]) } : { name: "feed" };
+  return match ? { name: "item", id: decodeURIComponent(match[1]) } : { name: "hub" };
 }
 
 export function useHashRoute(): Route {
@@ -32,6 +33,20 @@ export function useHashRoute(): Route {
 }
 
 export function getStancePath(id: string) {
-  const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
-  return `${base}stance/${encodeURIComponent(id)}`;
+  return getAppPath(`stance/${encodeURIComponent(id)}`);
+}
+
+export function getFeedPath() {
+  return getAppPath("feed");
+}
+
+export function getHubPath() {
+  return getAppPath("");
+}
+
+function getAppPath(path: string) {
+  const pathname = window.location.pathname.replace(/\/$/, "");
+  const routeMarker = pathname.match(/^(.*?)(?:\/(?:feed|stance)(?:\/.*)?$)/);
+  const base = routeMarker ? routeMarker[1] : pathname;
+  return `${base || ""}/${path}`.replace(/^([^/])/, "/$1");
 }

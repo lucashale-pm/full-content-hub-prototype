@@ -1,0 +1,158 @@
+{
+  "title": "RPGs",
+  "description": "Your destination for role-playing game coverage. From epic open-world adventures to tactical turn-based classics, we bring you in-depth reviews, expert guides, and the stories behind the stories.",
+  "heroArticleId": "8Euq3RHT62eTyWc6GsCa45",
+  "leadArticleId": "8G7JrMbNmCkpqV5Hju9PTA",
+  "latestArticleIds": [
+    "zhxPmtD2yDvyNGHNC9Emxb",
+    "u5nVnwsNuvoHGhHZvZwfWc",
+    "fKtxRfUR98Biq2GM8mni5c"
+  ],
+  "timeline": [
+    {
+      "id": "metaphor",
+      "date": "OCT 2025",
+      "title": "Metaphor outsells every Atlus game in history",
+      "author": "Ali Jones",
+      "quote": "I predicted this would happen in my review 6 months ago. Metaphor isn't just a great RPG — it's proof that turn-based games can go mainstream when the writing is this sharp.",
+      "readLabel": "Read the original review · 14 min"
+    },
+    {
+      "id": "tactics-dawn",
+      "date": "AUG 2025",
+      "title": "Tactics Dawn: The indie RPG breakout",
+      "author": "Jordan Gerblick",
+      "quote": "Nobody saw this coming. A three-person studio shipped a tactics game that out-paced every AAA RPG release this summer. This is what passion projects look like.",
+      "readLabel": "Read the full feature · 8 min"
+    },
+    {
+      "id": "hades-2",
+      "date": "JUN 2025",
+      "title": "Hades II leaves early access",
+      "author": "Anthony McGlynn",
+      "quote": "Supergiant didn't just iterate — they reinvented. Hades II is a masterclass in understanding what made the original special and then doubling down on all of it.",
+      "readLabel": "Read the review · 11 min"
+    },
+    {
+      "id": "nightreign",
+      "date": "MAR 2025",
+      "title": "The Nightreign difficulty debate",
+      "author": "Josh West",
+      "quote": "The discourse around difficulty in RPGs has never been louder. Nightreign forces us to ask: is a game truly accessible if its hardest content is locked behind skill walls?",
+      "readLabel": "Read the editorial · 6 min"
+    },
+    {
+      "id": "predictions",
+      "date": "JAN 2025",
+      "title": "Our 2025 RPG predictions",
+      "author": "Josh West",
+      "quote": "We called 7 out of 10 correctly. The ones we missed? Nobody could have predicted the Persona resurgence or the Starfield DLC receiving this level of critical praise.",
+      "readLabel": "Read the predictions · 5 min"
+    }
+  ],
+  "editorialStances": [
+    {
+      "id": "turn-based",
+      "author": { "name": "Ali Jones", "initials": "AJ", "image": "https://cdn.mos.cms.futurecdn.net/vfmurXTNKzUscGfQrJ9nfd-140-80.jpg.webp" },
+      "role": "Features Editor · 8 yrs",
+      "quote": "Turn-based combat isn't just nostalgic — it's outpacing action RPGs",
+      "body": "Recent data shows completion rates for turn-based games are up 34% compared to action-heavy releases. The deliberate pacing allows for complex systems to breathe.",
+      "agreePercent": 65,
+      "disagreePercent": 35,
+      "comments": [
+        { "id": "maya-comment-1", "user": "@rpg_fan_99", "text": "Absolutely agree. I can pause turn-based whenever, and it respects my time.", "likes": 12 },
+        { "id": "maya-comment-2", "user": "@action_junkie", "text": "Strongly disagree, nothing beats real-time skill expression.", "likes": 8 }
+      ]
+    },
+    {
+      "id": "focused-campaigns",
+      "author": { "name": "Josh West", "initials": "JW", "image": "https://cdn.mos.cms.futurecdn.net/r9TQrTUmNtXVtPpGpqQrdC-140-80.jpg.webp" },
+      "role": "Editor-in-Chief · 10 yrs",
+      "quote": "Shorter, focused RPG campaigns are inherently superior to 100-hour slogs",
+      "body": "We are seeing massive drops in player retention after hour 30. Designing games to fit realistic adult schedules is a mark of true narrative discipline.",
+      "agreePercent": 82,
+      "disagreePercent": 18,
+      "comments": [
+        { "id": "marcus-comment-1", "user": "@quest_log", "text": "A great RPG should respect a player's time without losing its sense of scale.", "likes": 18 },
+        { "id": "marcus-comment-2", "user": "@long_campaign", "text": "Give me a memorable 100 hours over a rushed 20 every time.", "likes": 11 }
+      ]
+    }
+  ],
+  "hotTakes": [
+    {
+      "id": "turn-based-take",
+      "author": { "name": "Ali Jones", "initials": "AJ", "image": "https://cdn.mos.cms.futurecdn.net/vfmurXTNKzUscGfQrJ9nfd-140-80.jpg.webp" },
+      "raters": "2.1k rated",
+      "quote": "Turn-based combat is objectively superior to real-time action in RPGs.",
+      "ratings": [
+        { "id": "cold", "label": "Cold", "percent": 8 },
+        { "id": "mild", "label": "Mild", "percent": 12 },
+        { "id": "warm", "label": "Warm", "percent": 22 },
+        { "id": "hot", "label": "Hot", "percent": 38 },
+        { "id": "nuclear", "label": "Nuclear", "percent": 20 }
+      ]
+    },
+    {
+      "id": "open-world-take",
+      "author": { "name": "Jordan Gerblick", "initials": "JG", "image": "https://cdn.mos.cms.futurecdn.net/WFriTGcW9frGoBHGKfkQxV-140-80.jpg.webp" },
+      "raters": "1.8k rated",
+      "quote": "Open worlds have become a crutch for developers who can't write good stories.",
+      "ratings": [
+        { "id": "cold", "label": "Cold", "percent": 18 },
+        { "id": "mild", "label": "Mild", "percent": 20 },
+        { "id": "warm", "label": "Warm", "percent": 30 },
+        { "id": "hot", "label": "Hot", "percent": 22 },
+        { "id": "nuclear", "label": "Nuclear", "percent": 10 }
+      ]
+    }
+  ],
+  "versus": {
+    "questions": [
+      {
+        "id": "elden-bg3",
+        "title": "Elden Ring vs Baldur's Gate 3?",
+        "audienceChoiceId": "elden",
+        "options": [
+          { "id": "elden", "label": "Elden Ring", "percent": 63, "image": { "url": "https://cdn.mos.cms.futurecdn.net/VzT64mYHQr9v32F4gRe7XT.jpg", "alt": "Elden Ring inspired fantasy landscape" } },
+          { "id": "bg3", "label": "Baldur's Gate 3", "percent": 37, "image": { "url": "https://cdn.mos.cms.futurecdn.net/2uuERWU8p2Xh3EW2kDLnZC.jpg", "alt": "Baldur's Gate 3" } }
+        ]
+      },
+      {
+        "id": "combat",
+        "title": "Turn-based or real-time combat?",
+        "audienceChoiceId": "turn-based",
+        "options": [
+          { "id": "turn-based", "label": "Turn-based", "percent": 56, "image": { "url": "https://cdn.mos.cms.futurecdn.net/p6SfXun6Fs8N57MbqKdpVU.jpg", "alt": "Persona 3 Reload" } },
+          { "id": "real-time", "label": "Real-time", "percent": 44, "image": { "url": "https://cdn.mos.cms.futurecdn.net/C5wzYhehVfN6JDHrvSR8vU.jpg", "alt": "Avowed" } }
+        ]
+      },
+      {
+        "id": "world",
+        "title": "A huge open world or a focused adventure?",
+        "audienceChoiceId": "focused",
+        "options": [
+          { "id": "open-world", "label": "Open world", "percent": 45, "image": { "url": "https://cdn.mos.cms.futurecdn.net/DBVHX5zcagLyw7FZbMbzgc.jpg", "alt": "Like a Dragon Infinite Wealth" } },
+          { "id": "focused", "label": "Focused adventure", "percent": 55, "image": { "url": "https://cdn.mos.cms.futurecdn.net/kk8k88eRiAVM4p5Lb2VKAJ.jpg", "alt": "Banishers Ghosts of New Eden" } }
+        ]
+      },
+      {
+        "id": "party",
+        "title": "Build a party or play a lone hero?",
+        "audienceChoiceId": "party",
+        "options": [
+          { "id": "party", "label": "Build a party", "percent": 68, "image": { "url": "https://cdn.mos.cms.futurecdn.net/2uuERWU8p2Xh3EW2kDLnZC.jpg", "alt": "Baldur's Gate 3 party" } },
+          { "id": "lone-hero", "label": "Lone hero", "percent": 32, "image": { "url": "https://cdn.mos.cms.futurecdn.net/yAEaKL4KpHmgUGttbUWHt.jpg", "alt": "Vampire The Masquerade Bloodlines 2" } }
+        ]
+      },
+      {
+        "id": "build",
+        "title": "Magic, steel, or something in between?",
+        "audienceChoiceId": "magic",
+        "options": [
+          { "id": "magic", "label": "Magic first", "percent": 59, "image": { "url": "https://cdn.mos.cms.futurecdn.net/p7q2E4NNuTfftTZiNDLD3c.jpg", "alt": "Avowed magic" } },
+          { "id": "steel", "label": "Steel first", "percent": 41, "image": { "url": "https://cdn.mos.cms.futurecdn.net/VzT64mYHQr9v32F4gRe7XT.jpg", "alt": "The Witcher" } }
+        ]
+      }
+    ]
+  }
+}

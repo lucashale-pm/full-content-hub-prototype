@@ -15,8 +15,8 @@ npm run dev
 
 - Vite + React + TypeScript + Tailwind CSS.
 - A 430px maximum mobile canvas; desktop is only a centred preview surface.
-- Path routes keep the feed at `/` and Stances at `/stance/<id>`; the Pages fallback
-  preserves direct links for the static deployment.
+- Path routes keep the RPG Hub at `/`, the chronological feed at `/feed`, and Stances at
+  `/stance/<id>`; the Pages fallback preserves direct links for the static deployment.
 - The feed is assembled in `src/app/App.tsx` from reusable cards. Its current sequence
   includes compact/context article cards, a Stance update, the Stance card, vertical and
   landscape video cards, Firework carousel content, and the Big Preview package.
@@ -29,10 +29,10 @@ npm run dev
 
 ## Architecture and handoff
 
-`src/app/App.tsx` owns feed composition and chooses which card variant to render. JSON
-content stays outside React components: article records are normalized in
-`content/articles.json`, display order is in `content/feed.json`, and optional editorial
-context is mapped by article ID in `content/editorial-contexts.json`.
+`src/app/App.tsx` owns page composition and chooses which view to render. JSON content
+stays outside React components: article records are normalized in `content/articles.json`,
+feed display order is in `content/feed.json`, Hub arrangement is in `content/hub.json`,
+and optional editorial context is mapped by article ID in `content/editorial-contexts.json`.
 
 `src/components/ArticleCard.tsx` supports the compact default and the richer editorial
 context treatment. `StanceDetailPage.tsx` is a local, mobile-first debate experience:
@@ -47,6 +47,11 @@ API, or membership service behind them. Refreshing resets the demo state.
 The feed includes a few intentionally seeded followed games plus three saved and three
 reacted article cards. These are presentation defaults only and are defined explicitly
 in `GameFollowRow.tsx` and `App.tsx`.
+
+`HubPage.tsx` is the mobile RPG destination. It composes dedicated section navigation,
+`HubTimeline`, `HubEditorialStances`,
+and `HubParticipation` components. The editorial timeline and Stance content come from
+`content/hub.json`; local Hub interactions reset on refresh.
 
 Remote media is intentionally referenced by HTTPS URL. Firework storyblocks are enabled
 by the scripts in `index.html`; the vertical Stance video is data-driven with an opinion
