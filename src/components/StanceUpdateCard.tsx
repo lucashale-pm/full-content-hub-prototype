@@ -49,7 +49,7 @@ export function StanceUpdateCard({ stance, opinion }: StanceUpdateCardProps) {
         </header>
 
         <a className="block no-underline" href={getStancePath(stance.id)}>
-          <span className={`mt-5 inline-flex rounded-full border px-2 py-1 text-[11px] font-bold uppercase tracking-[0.06em] ${sentimentStyles[opinion.sentiment]}`}>
+          <span className={`mt-2 inline-flex rounded-full border px-2 py-1 text-[11px] font-bold uppercase tracking-[0.06em] ${sentimentStyles[opinion.sentiment]}`}>
             {opinion.label}
           </span>
           <h3 className="m-0 mt-2 text-[20px] font-bold leading-[26px] tracking-[-0.02em]">“{opinion.statement}”</h3>
