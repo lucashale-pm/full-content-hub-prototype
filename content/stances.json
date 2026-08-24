@@ -19,7 +19,7 @@
       },
       "publishedLabel": "2h ago",
       "updatedLabel": "Updated 18m ago",
-      "updateSummary": "2 expert takes added",
+      "updateSummary": "3 expert takes added",
       "commentCount": 1402,
       "snippet": "Arrowhead's first massive balance patch has hit Super Earth. Are these changes a healthy reset or a punishing overcorrection?",
       "primer": [
@@ -67,6 +67,26 @@
             "Everyone needs to take a collective breath and look at the bigger picture. Yes, losing the absolute dominance of the Railgun hurts today, but relying on one single support weapon out of a dozen was terrible for the game's long-term health and replayability. We were locked into a stagnant, monolithic meta where four players dropping into a mission with the exact same Breaker/Railgun/Shield pack loadout was the only 'correct' way to play. Ripping this band-aid off now is essential to force the community out of its comfort zone.",
             "The real story here isn't the nerfs - it's that heavy armor values finally work as intended, meaning players can actually survive hits that would have previously one-shot them. Arrowhead is actively forcing us to rethink our stratagem synergies and rely on actual squad-based teamwork rather than expecting one lone wolf to easily solo five Chargers. It's a rough adjustment period, sure, but shifting the focus back to coordinated, cooperative problem-solving is ultimately what makes this game special."
           ]
+        },
+        {
+          "id": "maya-patel",
+          "addedLabel": "Added just now",
+          "sentiment": "supporting",
+          "label": "Supporting view",
+          "statement": "The Railgun nerf is the reset high-level squads needed.",
+          "author": {
+            "name": "Maya Smith",
+            "initials": "MP"
+          },
+          "credentials": [
+            { "icon": "mic", "text": "Content Creator" },
+            { "icon": "brain", "text": "Co-op Build Specialist" }
+          ],
+          "paragraphs": [],
+          "video": {
+            "channel": "marie_claire_uk",
+            "videoId": "ojpmrK"
+          }
         }
       ],
       "vote": {

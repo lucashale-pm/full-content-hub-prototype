@@ -1,4 +1,5 @@
 import { BarChart3, Brain, Medal, Mic, Trophy } from "lucide-react";
+import { createElement } from "react";
 import { useEffect, useRef } from "react";
 import type { StanceCredential, StanceOpinion } from "../content/types";
 import { OpinionReactionRow } from "./OpinionReactionRow";
@@ -73,9 +74,23 @@ export function StanceOpinionCard({ opinion, reaction, onReact, onEnterView }: S
           {opinion.credentials.map((credential) => <Credential key={credential.text} credential={credential} />)}
         </div>
 
-        <div className="mt-4 flex flex-col gap-5 text-[18px] leading-[26px] text-gr-subtle">
-          {opinion.paragraphs.map((paragraph) => <p key={paragraph} className="m-0">{paragraph}</p>)}
-        </div>
+        {opinion.video ? (
+          <div className="mt-4">
+            <p className="m-0 text-xs font-bold uppercase tracking-[0.08em] text-gr-action">Video viewpoint</p>
+            <div className="relative mt-2 aspect-[9/16] w-full overflow-hidden rounded-3xl bg-[#15171d] [&>fw-storyblock]:block [&>fw-storyblock]:size-full">
+              {createElement("fw-storyblock", {
+                channel: opinion.video.channel,
+                video: opinion.video.videoId,
+                max_videos: "1",
+                autoplay: "true",
+              })}
+            </div>
+          </div>
+        ) : (
+          <div className="mt-4 flex flex-col gap-5 text-[18px] leading-[26px] text-gr-subtle">
+            {opinion.paragraphs.map((paragraph) => <p key={paragraph} className="m-0">{paragraph}</p>)}
+          </div>
+        )}
 
         {onReact && <OpinionReactionRow authorName={opinion.author.name} selected={reaction} onSelect={onReact} />}
       </article>

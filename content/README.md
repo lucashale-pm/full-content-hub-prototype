@@ -20,11 +20,13 @@ The app uses local content only; it never fetches an API or live feed.
 - Each normalized article also has a `game` label used by the card topic row, so the
   feed does not show the generic `RPG` category when a specific game is known.
 - `big-preview.json` stores the separate Marvel's Wolverine package: its lead article,
-  supplied hero image, author, and three related live article links for the horizontal
-  “Related” rail.
-- `stances.json` stores the editorial primer, verified opinions, local vote seed data,
-  and seeded comments for each Stance detail page. Add another record to support a
-  second Stance without changing the components.
+  package intro, supplied hero image, author, and three related live article links for
+  the horizontal “Related” rail.
+- `stances.json` stores the editorial primer, chronological contributor opinions, local
+  vote seed data, and seeded comments for each Stance detail page. An opinion can use
+  either text paragraphs or an optional Firework `video` object. The current Helldivers 2
+  Stance includes Maya Smith's vertical video viewpoint using `marie_claire_uk` / `ojpmrK`.
+  Add another Stance record without changing the components.
 
 When a new export arrives, replace the source snapshot and run `npm run normalize:feed`.
 Do not hand-edit `articles.json`; edit the source export or the normalizer instead.
@@ -36,11 +38,13 @@ Future supported `type` values are:
 - `video` — use `orientation` of `vertical` or `horizontal`.
 - `articleUpdate` — a new development on an existing story; include `parentId`.
 - `comment` — a surfaced reader/expert comment; include `parentId`.
-- `stance` — a lead story plus two or three contributor viewpoints.
+- `stance` — a lead story plus contributor viewpoints; each viewpoint may be text or a
+  vertical Firework video.
 
 All remote media must use a full HTTPS URL from the approved GamesRadar/Future CDN.
 Keep a useful `alt` value for every image or video poster. No media is uploaded
 or fetched during the build.
 
-The first content pass will add the complete item examples and their validation
-rules once the supplied articles are available.
+Editorial context is deliberately hand-written. Keep it short, specific, and useful to
+the reader: labels such as `What changed`, `Why it matters`, and `What you need to know`
+should explain why a story deserves attention rather than repeat the article summary.

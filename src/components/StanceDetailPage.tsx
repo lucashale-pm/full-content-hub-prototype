@@ -1,4 +1,4 @@
-import { BadgeCheck, Clock3, History, Menu, MessageCircle, Send, ThumbsUp, X } from "lucide-react";
+import { Check, Clock3, History, Menu, MessageCircle, Send, ThumbsUp, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import type { StanceComment, StanceRecord } from "../content/types";
@@ -17,6 +17,8 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
   const [comments, setComments] = useState<StanceComment[]>(stance.comments);
   const [draft, setDraft] = useState("");
   const [following, setFollowing] = useState(false);
+  const [membershipOpen, setMembershipOpen] = useState(false);
+  const [followingStance, setFollowingStance] = useState(false);
   const [engagementDemo, setEngagementDemo] = useState(true);
   const [engagementMenuOpen, setEngagementMenuOpen] = useState(false);
   const [engagementVisible, setEngagementVisible] = useState(false);
@@ -78,11 +80,65 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
 
   return (
     <article className="w-full text-gr-text">
-      <header className="relative pr-12">
-        <p className="m-0 text-xs font-semibold uppercase tracking-[0.1em] text-gr-subtle">
-          {stance.game} <span className="px-1.5 text-gr-muted">|</span> {stance.topic}
-        </p>
-        <h1 className="m-0 mt-3 text-[24px] font-semibold leading-[1.18] tracking-[-0.03em]">{stance.title}</h1>
+      <header className="relative -mx-4 -mt-6 w-[calc(100%+2rem)] border-b border-[#38404e] bg-black px-4 py-3">
+        <div className="flex items-center justify-between gap-4">
+          <a className="inline-flex items-center gap-2 no-underline" href={import.meta.env.BASE_URL} aria-label="GamesRadar home">
+            <img className="block h-7 w-auto" src="https://cdn.mos.cms.futurecdn.net/flexiimages/l3fqzehadb1768907286.svg" alt="GamesRadar" />
+          </a>
+
+          <button
+            className="inline-flex size-9 items-center justify-center border-0 bg-transparent text-gr-subtle transition-colors hover:text-white"
+            type="button"
+            aria-label="Open stance page options"
+            aria-expanded={engagementMenuOpen}
+            aria-controls="stance-page-options"
+            onClick={() => setEngagementMenuOpen((value) => !value)}
+          >
+            {engagementMenuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+          </button>
+        </div>
+
+        {engagementMenuOpen && (
+          <div id="stance-page-options" className="absolute right-4 top-14 z-20 w-60 rounded-3xl border border-[#465163] bg-[#151515] p-3 shadow-xl shadow-black/50" role="menu">
+            <p className="m-0 text-xs font-bold text-gr-subtle">Engagement demo</p>
+            <p className="m-0 mt-1 text-xs leading-[14px] text-gr-muted">Floating prompt and viewpoint reactions</p>
+            <button
+              className={`mt-3 w-full rounded-full px-3 py-2 text-xs font-bold transition-colors ${engagementDemo ? "bg-[#DC361A] text-white" : "bg-[#465163] text-gr-subtle"}`}
+              type="button"
+              role="menuitem"
+              aria-pressed={engagementDemo}
+              onClick={() => {
+                setEngagementDemo((value) => !value);
+                setEngagementMenuOpen(false);
+              }}
+            >
+              {engagementDemo ? "Turn demo off" : "Turn demo on"}
+            </button>
+          </div>
+        )}
+      </header>
+
+      <aside className="-mx-4 flex w-[calc(100%+2rem)] items-center gap-3 rounded-none border-b border-[#3b4555] bg-[#292f3c] px-4 py-3" aria-label="Stance update status">
+        <History size={18} className="shrink-0 text-[#DC361A]" aria-hidden="true" />
+        <div className="min-w-0">
+          <p className="m-0 flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-[0.08em] text-[#DC361A]">
+            <span>Ongoing stance</span>
+            <span aria-hidden="true">•</span>
+            <button
+              className="border-0 bg-transparent p-0 text-left text-gr-action"
+              type="button"
+              aria-pressed={followingStance}
+              onClick={() => setFollowingStance((value) => !value)}
+            >
+              {followingStance ? "Updated now" : "Notify me of updates"}
+            </button>
+          </p>
+          <p className="m-0 mt-0.5 text-xs leading-[14px] text-gr-muted">{stance.updateSummary} · {stance.updatedLabel}</p>
+        </div>
+      </aside>
+
+      <header className="pt-6">
+        <h1 className="m-0 text-[24px] font-semibold leading-[1.18] tracking-[-0.03em]">{stance.title}</h1>
 
         <div className="mt-5 flex items-center gap-2.5">
           <StanceAvatar profile={stance.author} />
@@ -90,9 +146,6 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
             <span className="block text-sm font-bold leading-[17px]">{stance.author.name}</span>
             <span className="flex flex-wrap items-center gap-1.5 text-xs leading-[14px] text-gr-muted">
               <span>{stance.author.role}</span>
-              <span aria-hidden="true">•</span>
-              <BadgeCheck size={13} className="text-gr-action" aria-hidden="true" />
-              <span>Verified Editor</span>
             </span>
           </div>
         </div>
@@ -102,55 +155,17 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
           <span className="inline-flex items-center gap-1"><MessageCircle size={13} aria-hidden="true" />{formatCount(stance.commentCount)} Comments</span>
         </div>
 
-        <div className="absolute right-0 top-0 z-20">
-          <button
-            className="inline-flex size-9 items-center justify-center rounded-full border border-[#465163] bg-[#20242d] text-gr-subtle transition-colors hover:border-[#6c7890] hover:text-white"
-            type="button"
-            aria-label="Open stance page options"
-            aria-expanded={engagementMenuOpen}
-            aria-controls="stance-page-options"
-            onClick={() => setEngagementMenuOpen((value) => !value)}
-          >
-            {engagementMenuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
-          </button>
-          {engagementMenuOpen && (
-            <div id="stance-page-options" className="absolute right-0 top-11 w-60 rounded-3xl border border-[#465163] bg-[#151515] p-3 shadow-xl shadow-black/50" role="menu">
-              <p className="m-0 text-xs font-bold text-gr-subtle">Engagement demo</p>
-              <p className="m-0 mt-1 text-xs leading-[14px] text-gr-muted">Floating prompt and viewpoint reactions</p>
-              <button
-                className={`mt-3 w-full rounded-full px-3 py-2 text-xs font-bold transition-colors ${engagementDemo ? "bg-[#DC361A] text-white" : "bg-[#465163] text-gr-subtle"}`}
-                type="button"
-                role="menuitem"
-                aria-pressed={engagementDemo}
-                onClick={() => {
-                  setEngagementDemo((value) => !value);
-                  setEngagementMenuOpen(false);
-                }}
-              >
-                {engagementDemo ? "Turn demo off" : "Turn demo on"}
-              </button>
-            </div>
-          )}
-        </div>
       </header>
 
       <img className="mt-6 block aspect-[16/9] w-full rounded-3xl object-cover" src={stance.hero.url} alt={stance.hero.alt} loading="eager" />
       <button
         className="mt-3 w-full rounded-3xl bg-gr-action px-4 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90"
         type="button"
-        aria-pressed={following}
-        onClick={() => setFollowing((value) => !value)}
+        aria-haspopup="dialog"
+        onClick={() => setMembershipOpen(true)}
       >
         {following ? `Following ${stance.game}` : `Follow ${stance.game}`}
       </button>
-
-      <aside className="mt-4 flex items-center gap-3 rounded-3xl border border-[#3b4555] bg-[#292f3c] px-4 py-3" aria-label="Stance update status">
-        <History size={18} className="shrink-0 text-[#DC361A]" aria-hidden="true" />
-        <div className="min-w-0">
-          <p className="m-0 text-xs font-bold uppercase tracking-[0.08em] text-[#DC361A]">Ongoing stance</p>
-          <p className="m-0 mt-0.5 text-xs leading-[14px] text-gr-muted">{stance.updateSummary} · {stance.updatedLabel}</p>
-        </div>
-      </aside>
 
       <section className="mt-6 border-t-2 border-[#38404e] py-6" aria-label="Editorial primer">
         <div className="flex flex-col gap-5 text-[18px] leading-[26px] text-gr-subtle">
@@ -227,6 +242,52 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
           onSubmitViewpoint={addViewpoint}
           onViewComments={() => commentsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
         />
+      )}
+
+      {membershipOpen && (
+        <div className="fixed inset-0 z-[60] bg-[#252934] px-4 py-5 text-gr-text" role="dialog" aria-modal="true" aria-labelledby="membership-title">
+          <div className="mx-auto flex min-h-full w-full max-w-[430px] flex-col">
+            <header className="flex items-center justify-between">
+              <span className="text-sm font-extrabold tracking-[-0.04em] text-white">GAMESRADAR</span>
+              <button className="inline-flex size-9 items-center justify-center border-0 bg-transparent text-gr-subtle hover:text-white" type="button" aria-label="Close membership prompt" onClick={() => setMembershipOpen(false)}>
+                <X size={20} aria-hidden="true" />
+              </button>
+            </header>
+
+            <div className="flex flex-1 flex-col justify-center py-10">
+              <p className="m-0 text-xs font-bold uppercase tracking-[0.12em] text-gr-action">GamesRadar membership</p>
+              <h2 id="membership-title" className="m-0 mt-3 text-[28px] font-semibold leading-[1.12] tracking-[-0.03em]">Follow the games you care about.</h2>
+              <p className="m-0 mt-4 text-base leading-[1.5] text-gr-subtle">Become a member to keep up with Helldivers 2 and get notified when a new viewpoint is added to this Stance.</p>
+
+              <ul className="m-0 mt-7 flex list-none flex-col gap-4 p-0">
+                {[
+                  "Follow games and get the updates that matter to you",
+                  "Save stories and return to them whenever you like",
+                  "Join votes, comments, and the wider conversation",
+                ].map((benefit) => (
+                  <li key={benefit} className="flex items-start gap-3 text-sm leading-[1.45] text-gr-subtle">
+                    <span className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-gr-action text-white"><Check size={13} strokeWidth={3} aria-hidden="true" /></span>
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                className="mt-8 w-full rounded-3xl bg-gr-action px-4 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90"
+                type="button"
+                onClick={() => {
+                  setFollowing(true);
+                  setMembershipOpen(false);
+                }}
+              >
+                Become a member
+              </button>
+              <button className="mt-3 w-full border-0 bg-transparent px-4 py-2 text-sm font-bold text-gr-muted hover:text-white" type="button" onClick={() => setMembershipOpen(false)}>
+                Not now
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </article>
   );

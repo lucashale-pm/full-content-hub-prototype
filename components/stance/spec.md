@@ -23,8 +23,8 @@ readers add a lightweight local vote or comment.
   It uses a full-bleed black Substack-inspired surface, puts a full-width viewpoint label
   first, places contributor credentials inline beneath the byline, and leads with the
   complete added argument before the article image and CTA context.
-- `StanceDetailPage` includes the verified editor treatment, primer, debate, vote, CTA,
-  and comments.
+- `StanceDetailPage` includes the branded header, ongoing-status strip, game follow and
+  Stance notification actions, primer, debate, vote, membership concept, and comments.
 - `StanceOpinionCard`, `StanceVotePanel`, and `StanceAvatar` are reusable detail-page
   building blocks.
 - `StanceEngagementDock` is a delayed, fixed mobile prompt that collapses while readers
@@ -33,6 +33,9 @@ readers add a lightweight local vote or comment.
   this is intentionally separate from the overall Stance vote.
 - The debate uses a chronological update rail; each opinion carries its own `addedLabel`
   and the page summarizes the latest local update.
+- Opinions may provide an optional Firework `video` object (`channel`, `videoId`) instead
+  of text paragraphs. The timeline keeps the same author, sentiment, credentials, and
+  reaction treatment around the vertical video.
 
 ## States and behavior
 
@@ -52,6 +55,8 @@ readers add a lightweight local vote or comment.
 ## Behavior
 
 - An opinion reaction does not change the overall vote or open a text field.
+- Video opinions show the Firework storyblock in a 9:16 card and omit the text-opinion
+  paragraphs for this demo.
 - An overall vote from either the dock or the main poll opens the optional explanation
   state in the dock. Submitting the explanation appends it to the local comment thread.
 - The confirmation action scrolls to the discussion instead of creating a second comment
@@ -60,7 +65,17 @@ readers add a lightweight local vote or comment.
 ## Constraints
 
 - Mobile-only layout, existing GamesRadar colors, Figtree typography, and Lucide icons.
-- Verified labels are specific to Stance detail pages, not standard feed cards.
+- Detail pages start with a GamesRadar-branded utility header, followed by a full-width,
+  square-corner ongoing-status strip. The game/topic breadcrumb is intentionally omitted.
+- The hero is followed by a full-width `Follow <game>` action for the current game.
+- The ongoing-status strip includes the compact orange `Notify me of updates` action;
+  its local selected state reads `Updated now` and represents the evolving debate.
+- The game follow action opens a local membership takeover concept with three benefits,
+  a primary “Become a member” action, and a “Not now” escape. It does not connect to
+  authentication or membership services.
+- Contributor credentials remain specific to Stance opinions and are not shown on
+  standard feed cards. The Stance page author uses the supplied GamesRadar role without
+  a separate Verified Editor badge.
 - Update cards omit comment metadata, show the first two credentials, and use the parent
   Stance hero image when available.
 - Placeholder avatars use initials; opinion records can optionally supply an image URL.

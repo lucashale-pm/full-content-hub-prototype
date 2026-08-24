@@ -172,6 +172,10 @@ export interface StanceOpinion {
   author: StanceProfile;
   credentials: StanceCredential[];
   paragraphs: string[];
+  video?: {
+    channel: string;
+    videoId: string;
+  };
 }
 
 export interface StanceVoteOption {
