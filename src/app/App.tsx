@@ -5,6 +5,7 @@ import { LandscapeVideoCard } from "../components/LandscapeVideoCard";
 import { FireworkVideoCarousel } from "../components/FireworkVideoCarousel";
 import { BigPreviewCard } from "../components/BigPreviewCard";
 import { StanceDetailPage } from "../components/StanceDetailPage";
+import { TitleCardsPage } from "../components/TitleCardsPage";
 import { StanceFeedCard } from "../components/StanceFeedCard";
 import { StanceUpdateCard } from "../components/StanceUpdateCard";
 import { HubPage } from "../components/HubPage";
@@ -54,6 +55,7 @@ export function App() {
   const route = useHashRoute();
 
   return (
+    route.name === "title-cards" ? <TitleCardsPage /> :
     <MobileShell>
       {route.name === "hub" ? (
         <section className="px-4" aria-live="polite">
