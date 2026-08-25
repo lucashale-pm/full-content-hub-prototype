@@ -34,18 +34,22 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
-.title-card-stage {
-  min-height: 100dvh;
-  display: grid;
-  place-items: center;
-  background: #090a0d;
-  color: var(--color-gr-text);
-}
+.title-card-configurator { min-height: 100dvh; display: grid; grid-template-columns: minmax(260px, 360px) minmax(320px, 430px); justify-content: center; gap: 48px; padding: 32px; background: #090a0d; color: var(--color-gr-text); }
+.title-card-editor { align-self: center; }
+.title-card-editor__eyebrow { margin: 0; color: #ff8d4b; font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.title-card-editor h1 { margin: 10px 0 0; font-size: 34px; letter-spacing: -.04em; }
+.title-card-editor__hint { margin: 10px 0 28px; color: var(--color-gr-muted); font-size: 14px; line-height: 1.45; }
+.title-card-editor label { display: block; margin-top: 16px; }
+.title-card-editor label span { display: block; margin-bottom: 7px; color: #d3d3d9; font-size: 12px; font-weight: 700; }
+.title-card-editor input, .title-card-editor textarea { width: 100%; resize: vertical; border: 1px solid #465163; border-radius: 12px; background: #17191f; color: #fff; outline: none; padding: 11px 12px; font-size: 15px; line-height: 1.4; }
+.title-card-editor input:focus, .title-card-editor textarea:focus { border-color: #fe6700; box-shadow: 0 0 0 2px rgba(254, 103, 0, .2); }
+.title-card-editor__sizes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.title-card-preview { display: grid; min-width: 0; max-width: 100%; place-items: center; overflow: auto; }
 
 .title-card {
   position: relative;
-  width: min(100vw, 430px);
-  min-height: 100dvh;
+  width: 100%;
+  min-height: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -97,6 +101,8 @@ a:focus-visible {
   line-height: .94;
 }
 
+.title-card h2 { max-width: 360px; margin: 0; color: #fff; font-size: clamp(44px, 13vw, 62px); font-weight: 600; letter-spacing: -.055em; line-height: .94; }
+
 .title-card__subheading {
   max-width: 330px;
   margin: 24px 0 0;
@@ -117,3 +123,10 @@ a:focus-visible {
 
 .title-card__glow--top { top: -80px; right: -70px; }
 .title-card__glow--bottom { bottom: -100px; left: -80px; opacity: .38; }
+
+@media (max-width: 760px) {
+  .title-card-configurator { grid-template-columns: 1fr; gap: 24px; padding: 24px 16px; }
+  .title-card-editor { width: min(100%, 430px); margin: 0 auto; }
+  .title-card-preview { order: -1; }
+  .title-card { max-width: 100%; }
+}

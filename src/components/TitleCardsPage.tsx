@@ -1,61 +1,73 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const cards = [
-  {
-    eyebrow: "GamesRadar RPG",
-    heading: "Introducing Content & Community Hubs",
-    subheading: "A new home for the games you love, the stories that matter, and the people who play them.",
-  },
-  {
-    eyebrow: "Your hub, updated",
-    heading: "Since you were last here",
-    subheading: "Catch up on the latest stories, videos, debates, and community moments in one quick recap.",
-  },
-  {
-    eyebrow: "A feed built for you",
-    heading: "Feed",
-    subheading: "Personalise what you see, follow the topics you care about, or browse the latest stories by hub.",
-  },
-  {
-    eyebrow: "Stay close to the action",
-    heading: "Follow games on the pages by becoming a member",
-    subheading: "Keep the games you love and their latest updates close at hand.",
-  },
-  {
-    eyebrow: "More than the news",
-    heading: "New Stance pages",
-    subheading: "Experts and community members share detailed viewpoints on the latest news.",
-  },
-] as const;
+const draftKey = "gamesradar-title-card-draft";
+
+const defaultDraft = {
+  width: 430,
+  height: 932,
+  eyebrow: "GamesRadar RPG",
+  heading: "Introducing Content & Community Hubs",
+  subheading: "A new home for the games you love, the stories that matter, and the people who play them.",
+};
+
+type Draft = typeof defaultDraft;
 
 export function TitleCardsPage() {
-  const [active, setActive] = useState(0);
-  const card = cards[active];
-
-  function move(direction: -1 | 1) {
-    setActive((current) => (current + direction + cards.length) % cards.length);
-  }
+  const [draft, setDraft] = useState<Draft>(defaultDraft);
+  const hydrated = useRef(false);
 
   useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "ArrowLeft") move(-1);
-      if (event.key === "ArrowRight" || event.key === " ") move(1);
+    const saved = window.localStorage.getItem(draftKey);
+    if (saved) {
+      try {
+        setDraft({ ...defaultDraft, ...JSON.parse(saved) });
+      } catch {
+        window.localStorage.removeItem(draftKey);
+      }
     }
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    hydrated.current = true;
   }, []);
 
+  useEffect(() => {
+    if (!hydrated.current) return;
+    window.localStorage.setItem(draftKey, JSON.stringify(draft));
+  }, [draft]);
+
+  function updateText(field: "eyebrow" | "heading" | "subheading", value: string) {
+    setDraft((current) => ({ ...current, [field]: value }));
+  }
+
+  function updateSize(field: "width" | "height", value: string) {
+    const parsed = Number(value);
+    if (!Number.isFinite(parsed)) return;
+    const limits = field === "height" ? { min: 320, max: 932 } : { min: 240, max: 1600 };
+    setDraft((current) => ({ ...current, [field]: Math.min(limits.max, Math.max(limits.min, parsed)) }));
+  }
+
   return (
-    <main className="title-card-stage" aria-label="Content hub video title cards">
-      <section className="title-card" aria-live="polite">
-        <div className="title-card__glow title-card__glow--top" aria-hidden="true" />
-        <div className="title-card__glow title-card__glow--bottom" aria-hidden="true" />
-        <div className="title-card__content">
-          <p className="title-card__eyebrow">{card.eyebrow}</p>
-          <span className="title-card__rule" aria-hidden="true" />
-          <h1>{card.heading}</h1>
-          <p className="title-card__subheading">{card.subheading}</p>
+    <main className="title-card-configurator">
+      <section className="title-card-editor" aria-label="Title card editor">
+        <p className="title-card-editor__eyebrow">Title card configurator</p>
+        <h1>Make your card</h1>
+        <p className="title-card-editor__hint">Type copy. Preview updates live. Draft stays on this device.</p>
+        <div className="title-card-editor__sizes">
+          <label><span>Width (px)</span><input type="number" min="240" max="1600" value={draft.width} onChange={(event) => updateSize("width", event.target.value)} /></label>
+          <label><span>Height (px)</span><input type="number" min="320" max="932" value={draft.height} onChange={(event) => updateSize("height", event.target.value)} /></label>
+        </div>
+        <label><span>Eyebrow</span><input value={draft.eyebrow} onChange={(event) => updateText("eyebrow", event.target.value)} /></label>
+        <label><span>Heading</span><textarea rows={3} value={draft.heading} onChange={(event) => updateText("heading", event.target.value)} /></label>
+        <label><span>Subheading</span><textarea rows={5} value={draft.subheading} onChange={(event) => updateText("subheading", event.target.value)} /></label>
+      </section>
+      <section className="title-card-preview" aria-label="Live title card preview">
+        <div className="title-card" style={{ width: `${draft.width}px`, height: `${draft.height}px` }}>
+          <div className="title-card__glow title-card__glow--top" aria-hidden="true" />
+          <div className="title-card__glow title-card__glow--bottom" aria-hidden="true" />
+          <div className="title-card__content">
+            <p className="title-card__eyebrow">{draft.eyebrow}</p>
+            <span className="title-card__rule" aria-hidden="true" />
+            <h2>{draft.heading}</h2>
+            <p className="title-card__subheading">{draft.subheading}</p>
+          </div>
         </div>
       </section>
     </main>
