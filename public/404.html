@@ -9,7 +9,8 @@
       const path = window.location.pathname;
       const stanceIndex = path.indexOf("/stance/");
       const feedIndex = path.endsWith("/feed") ? path.lastIndexOf("/feed") : -1;
-      const markerIndex = stanceIndex >= 0 ? stanceIndex : feedIndex;
+      const titleCardsIndex = path.endsWith("/title-cards") ? path.lastIndexOf("/title-cards") : -1;
+      const markerIndex = stanceIndex >= 0 ? stanceIndex : feedIndex >= 0 ? feedIndex : titleCardsIndex;
       const basePath = markerIndex >= 0 ? path.slice(0, markerIndex) || "/" : "/";
       const query = window.location.search;
       const hash = window.location.hash;
