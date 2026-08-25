@@ -21,7 +21,7 @@ export function StanceFeedCard({ stance }: StanceFeedCardProps) {
   return (
     <article className="relative min-h-[197px] w-full border-t-2 border-[#38404e] py-6 text-gr-text" aria-label={stance.title}>
       <div className="flex flex-col gap-2">
-        <a className="inline-flex self-start items-center gap-1.5 rounded-full bg-[#DC361A] px-2.5 py-1 text-xs font-bold uppercase tracking-[0.06em] text-white no-underline" href={getStancePath(stance.id)}>
+        <a className="inline-flex self-start items-center gap-1.5 rounded-full bg-[#DC361A] px-2.5 py-1 text-xs font-bold uppercase text-white no-underline" href={getStancePath(stance.id)}>
           <Scale size={13} strokeWidth={2.2} aria-hidden="true" />
           {stance.label}
         </a>
@@ -46,7 +46,7 @@ export function StanceFeedCard({ stance }: StanceFeedCardProps) {
         </header>
 
         <a className="block no-underline" href={getStancePath(stance.id)}>
-          <h2 className="m-0 text-base font-semibold leading-[1.3] tracking-[-0.02em]">{stance.title}</h2>
+          <h2 className="m-0 text-base font-semibold leading-[1.3]">{stance.title}</h2>
           <p className="m-0 mt-1.5 text-sm leading-[1.35] text-gr-muted">{stance.snippet}</p>
 
           <div className="mt-4" aria-label={`${opposingPercent}% ${opposing.label}; ${supportingPercent}% ${supporting.label}`}>

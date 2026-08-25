@@ -58,12 +58,12 @@ export function StanceOpinionCard({ opinion, reaction, onReact, onEnterView }: S
   return (
     <div className="relative pl-6">
       <span className="absolute left-0 top-2 size-3 rounded-full bg-[#DC361A] ring-4 ring-[#252934]" aria-hidden="true" />
-      <p className="m-0 pb-2 text-xs font-semibold uppercase tracking-[0.08em] text-gr-muted">{opinion.addedLabel}</p>
+      <p className="m-0 pb-2 text-xs font-semibold uppercase text-gr-muted">{opinion.addedLabel}</p>
       <article ref={cardRef} className="rounded-3xl border border-[#3b4555] bg-[#292f3c] p-4">
-        <span className={`inline-flex rounded-full border px-2 py-1 text-[11px] font-bold uppercase tracking-[0.06em] ${sentimentStyles[opinion.sentiment]}`}>
+        <span className={`inline-flex rounded-full border px-2 py-1 text-[11px] font-bold uppercase ${sentimentStyles[opinion.sentiment]}`}>
           {opinion.label}
         </span>
-        <h3 className="m-0 mt-3 text-[20px] font-bold leading-[26px] tracking-[-0.02em]">“{opinion.statement}”</h3>
+        <h3 className="m-0 mt-3 text-[20px] font-bold leading-[26px]">“{opinion.statement}”</h3>
 
         <div className="mt-4 flex items-center gap-2.5">
           <StanceAvatar profile={opinion.author} />
@@ -76,7 +76,7 @@ export function StanceOpinionCard({ opinion, reaction, onReact, onEnterView }: S
 
         {opinion.video ? (
           <div className="mt-4">
-            <p className="m-0 text-xs font-bold uppercase tracking-[0.08em] text-gr-action">Video viewpoint</p>
+            <p className="m-0 text-xs font-bold uppercase text-gr-action">Video viewpoint</p>
             <div className="relative mt-2 aspect-[9/16] w-full overflow-hidden rounded-3xl bg-[#15171d] [&>fw-storyblock]:block [&>fw-storyblock]:size-full">
               {createElement("fw-storyblock", {
                 channel: opinion.video.channel,

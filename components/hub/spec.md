@@ -47,6 +47,10 @@ into the chronological /feed experience.
 - The Hub’s featured-story area uses the existing FeaturedArticleCard for its first,
   full-width lead item, then the exact standard ArticleCard used by /feed for the rest;
   the Hub only supplies its section heading and “Go to the RPG Feed” destination.
+- Initials-based comment avatars use a deterministic coloured gradient, keeping the
+  same user visually consistent across nested replies and Hub comment previews.
+- Agree/disagree and hot-take selections surface a shared, auto-dismissing bottom
+  engagement toast so feedback feels connected to the stance-page interaction pattern.
 - The hero is intentionally compact enough to bring the title and follow action into
   the first viewport. “Since you were last here” states its action directly, and the
   Hub video embed uses the surrounding section rhythm without adding a duplicate rule.

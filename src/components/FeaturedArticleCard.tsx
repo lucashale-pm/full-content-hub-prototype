@@ -33,7 +33,7 @@ export function FeaturedArticleCard({ article, author }: FeaturedArticleCardProp
     <article className="relative w-full border-t-2 border-gr-action py-6 text-gr-text" aria-label={`Featured: ${article.title}`}>
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between gap-3">
-          <p className="m-0 text-xs font-extrabold uppercase tracking-[0.14em] text-gr-action">The big read</p>
+          <p className="m-0 text-xs font-extrabold uppercase text-gr-action">The big read</p>
           <span className="text-gr-muted" aria-label="Not saved"><Bookmark size={18} strokeWidth={2} aria-hidden="true" /></span>
         </div>
 
@@ -55,7 +55,7 @@ export function FeaturedArticleCard({ article, author }: FeaturedArticleCardProp
 
         <div>
           <a className="no-underline" href={articleHref} target={article.canonicalUrl ? "_blank" : undefined} rel={article.canonicalUrl ? "noreferrer" : undefined}>
-            <h2 className="m-0 mt-2 text-2xl font-semibold leading-[1.2] tracking-[-0.03em]">{article.title}</h2>
+            <h2 className="m-0 mt-2 text-2xl font-semibold leading-[1.2]">{article.title}</h2>
           </a>
           {getArticleSummary(article) && <p className="m-0 mt-2 text-sm leading-[1.4] text-gr-muted">{getArticleSummary(article)}</p>}
         </div>

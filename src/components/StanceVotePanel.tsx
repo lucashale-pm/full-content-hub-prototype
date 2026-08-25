@@ -35,7 +35,7 @@ export function StanceVotePanel({ vote, selected: controlledSelected, onVote }: 
   return (
     <section className="border-t-2 border-[#38404e] py-6" aria-labelledby="vote-title">
       <div className="rounded-3xl bg-[#191919] px-5 py-6">
-        <h2 id="vote-title" className="m-0 flex items-center justify-center gap-2 text-[20px] font-bold leading-[26px] tracking-[-0.02em]">
+        <h2 id="vote-title" className="m-0 flex items-center justify-center gap-2 text-[20px] font-bold leading-[26px]">
           <Scale size={18} className="text-gr-action" aria-hidden="true" />
           {vote.title}
         </h2>

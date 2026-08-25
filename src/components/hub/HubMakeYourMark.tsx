@@ -9,8 +9,8 @@ const waysToContribute = [
 
 export function HubMakeYourMark() {
   return <section className="border-t border-[#38404e] py-8" aria-labelledby="make-your-mark-title">
-    <p className="m-0 text-[11px] font-extrabold uppercase tracking-[0.14em] text-gr-muted">Share your expertise</p>
-    <h2 id="make-your-mark-title" className="m-0 mt-1 text-[32px] font-semibold tracking-[-0.035em]">Make Your Mark</h2>
+    <p className="m-0 text-[11px] font-extrabold uppercase text-gr-muted">Share your expertise</p>
+    <h2 id="make-your-mark-title" className="m-0 mt-1 text-[32px] font-semibold">Make Your Mark</h2>
 
     <div className="mt-6 rounded-3xl border border-white/10 bg-[#16161a] p-4">
       <div className="grid grid-cols-4 gap-2">
@@ -25,8 +25,8 @@ export function HubMakeYourMark() {
     </div>
 
     <div className="mt-4 grid grid-cols-2 gap-3">
-      <button className="rounded-3xl border border-white/10 bg-[#16161a] p-4 text-left" type="button"><h3 className="m-0 text-[21px] font-semibold tracking-[-0.025em]">Write a Review</h3><p className="m-0 mt-4 text-sm leading-[1.45] text-gr-muted">Rate mechanics, narrators, performance, and overall design.</p><span className="mt-5 block text-sm font-bold text-[#f1462a]">★ Start Drafting</span></button>
-      <button className="rounded-3xl border border-white/10 bg-[#16161a] p-4 text-left" type="button"><h3 className="m-0 text-[21px] font-semibold tracking-[-0.025em]">Start a Discussion</h3><p className="m-0 mt-4 text-sm leading-[1.45] text-gr-muted">Post your hot takes, questions, theories for editors and readers.</p><span className="mt-5 block text-sm font-bold text-gr-text">● New Thread</span></button>
+      <button className="rounded-3xl border border-white/10 bg-[#16161a] p-4 text-left" type="button"><h3 className="m-0 text-[21px] font-semibold">Write a Review</h3><p className="m-0 mt-4 text-sm leading-[1.45] text-gr-muted">Rate mechanics, narrators, performance, and overall design.</p><span className="mt-5 block text-sm font-bold text-[#f1462a]">★ Start Drafting</span></button>
+      <button className="rounded-3xl border border-white/10 bg-[#16161a] p-4 text-left" type="button"><h3 className="m-0 text-[21px] font-semibold">Start a Discussion</h3><p className="m-0 mt-4 text-sm leading-[1.45] text-gr-muted">Post your hot takes, questions, theories for editors and readers.</p><span className="mt-5 block text-sm font-bold text-gr-text">● New Thread</span></button>
     </div>
   </section>;
 }

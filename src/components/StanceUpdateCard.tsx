@@ -19,7 +19,7 @@ export function StanceUpdateCard({ stance, opinion }: StanceUpdateCardProps) {
   return (
     <article className="relative min-h-[197px] w-[calc(100%+2rem)] -mx-4 rounded-3xl bg-black px-4 py-6 text-gr-text" aria-label={`${opinion.author.name}'s stance on ${stance.title}`}>
       <div className="flex flex-col gap-2">
-        <a className="mb-4 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[#DC361A] px-2.5 py-2 text-xs font-bold uppercase tracking-[0.06em] text-white no-underline" href={getStancePath(stance.id)}>
+        <a className="mb-4 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[#DC361A] px-2.5 py-2 text-xs font-bold uppercase text-white no-underline" href={getStancePath(stance.id)}>
           <Scale size={13} strokeWidth={2.2} aria-hidden="true" />
           New viewpoint added
         </a>
@@ -49,10 +49,10 @@ export function StanceUpdateCard({ stance, opinion }: StanceUpdateCardProps) {
         </header>
 
         <a className="block no-underline" href={getStancePath(stance.id)}>
-          <span className={`mt-2 inline-flex rounded-full border px-2 py-1 text-[11px] font-bold uppercase tracking-[0.06em] ${sentimentStyles[opinion.sentiment]}`}>
+          <span className={`mt-2 inline-flex rounded-full border px-2 py-1 text-[11px] font-bold uppercase ${sentimentStyles[opinion.sentiment]}`}>
             {opinion.label}
           </span>
-          <h3 className="m-0 mt-2 text-[20px] font-bold leading-[26px] tracking-[-0.02em]">“{opinion.statement}”</h3>
+              <h3 className="m-0 mt-2 text-[20px] font-bold leading-[26px]">“{opinion.statement}”</h3>
           <p className="m-0 mt-2 text-sm leading-[1.45] text-gr-muted">{opinion.paragraphs[0]}</p>
 
           <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-gr-action">
@@ -65,7 +65,7 @@ export function StanceUpdateCard({ stance, opinion }: StanceUpdateCardProps) {
               <img className="aspect-[16/9] w-full object-cover" src={stance.hero.url} alt={stance.hero.alt} loading="lazy" />
             )}
             <div className="p-4">
-              <h2 className="m-0 line-clamp-2 text-base font-semibold leading-[1.3] tracking-[-0.02em]">{stance.title}</h2>
+              <h2 className="m-0 line-clamp-2 text-base font-semibold leading-[1.3]">{stance.title}</h2>
             </div>
           </div>
         </a>

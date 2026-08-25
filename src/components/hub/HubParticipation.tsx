@@ -4,7 +4,7 @@ import { StanceAvatar } from "../StanceAvatar";
 
 const takeEmoji = ["🧊", "🙂", "🌶️", "🔥", "☢️"];
 
-function HotTakeCard({ take }: { take: HubDocument["hotTakes"][number] }) {
+function HotTakeCard({ take, onEngagement }: { take: HubDocument["hotTakes"][number]; onEngagement?: (message: string) => void }) {
   const [selected, setSelected] = useState<string>();
   return <article className="rounded-3xl border border-white/10 bg-[#16161a] p-4">
     <div className="flex items-center justify-between gap-3"><div className="flex items-center gap-2.5"><StanceAvatar profile={take.author} size="sm" /><span className="text-sm font-semibold">{take.author.name}</span></div><span className="text-xs text-gr-muted">{take.raters}</span></div>
@@ -12,7 +12,7 @@ function HotTakeCard({ take }: { take: HubDocument["hotTakes"][number] }) {
     <div className="mt-4 grid grid-cols-5 gap-1.5">
       {take.ratings.map((rating, index) => {
         const chosen = selected === rating.id;
-        return <button key={rating.id} className={"rounded-2xl border px-1 py-2 text-center " + (chosen ? "border-[#ff6b00] bg-[#fe6700] text-white" : "border-white/10 text-gr-muted")} type="button" aria-pressed={chosen} onClick={() => setSelected(rating.id)}>
+        return <button key={rating.id} className={"rounded-2xl border px-1 py-2 text-center " + (chosen ? "border-[#ff6b00] bg-[#fe6700] text-white" : "border-white/10 text-gr-muted")} type="button" aria-pressed={chosen} onClick={() => { setSelected(rating.id); onEngagement?.(`Take rated: ${rating.label}`); }}>
           <span className="block text-base leading-none" aria-hidden="true">{takeEmoji[index]}</span>
           <span className="mt-1 block text-[10px] font-semibold">{selected ? rating.percent + "%" : rating.label}</span>
         </button>;
@@ -22,12 +22,14 @@ function HotTakeCard({ take }: { take: HubDocument["hotTakes"][number] }) {
   </article>;
 }
 
-export function HubHotTakes({ takes }: { takes: HubDocument["hotTakes"] }) {
+export function HubHotTakes({ takes, onEngagement }: { takes: HubDocument["hotTakes"];
+  onEngagement?: (message: string) => void;
+}) {
   return <section id="takes" className="scroll-mt-28 border-t border-[#38404e] py-8" aria-labelledby="takes-title">
-    <p className="m-0 text-[11px] font-extrabold uppercase tracking-[0.14em] text-gr-muted">Quick reactions</p>
-    <h2 id="takes-title" className="m-0 mt-1 text-[24px] font-bold tracking-[-0.03em]">How hot are these takes?</h2>
+    <p className="m-0 text-[11px] font-extrabold uppercase text-gr-muted">Quick reactions</p>
+    <h2 id="takes-title" className="m-0 mt-1 text-[24px] font-bold">How hot are these takes?</h2>
     <p className="m-0 mt-2 text-sm leading-[1.4] text-gr-muted">Rate each editor take, then see how the community voted.</p>
-    <div className="mt-5 space-y-3">{takes.map((take) => <HotTakeCard key={take.id} take={take} />)}</div>
+    <div className="mt-5 space-y-3">{takes.map((take) => <HotTakeCard key={take.id} take={take} onEngagement={onEngagement} />)}</div>
   </section>;
 }
 
@@ -53,10 +55,10 @@ export function HubVersus({ versus }: { versus: HubDocument["versus"] }) {
 
   return <section id="versus" className="scroll-mt-28 border-t border-[#38404e] py-8" aria-labelledby="versus-title">
     <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
-      <div className="flex items-center justify-between gap-3"><p className="m-0 text-[11px] font-extrabold uppercase tracking-[0.14em] text-gr-muted">This or that</p>{!complete && <span className="text-xs text-gr-muted">{step + 1} of {questions.length}</span>}</div>
+      <div className="flex items-center justify-between gap-3"><p className="m-0 text-[11px] font-extrabold uppercase text-gr-muted">This or that</p>{!complete && <span className="text-xs text-gr-muted">{step + 1} of {questions.length}</span>}</div>
       {complete ? <div className="animate-[hub-panel-in_320ms_ease-out] py-5 text-center">
-        <p className="m-0 text-[11px] font-extrabold uppercase tracking-[0.14em] text-gr-action">Your results</p>
-        <h2 id="versus-title" className="m-0 mt-3 text-[25px] font-bold tracking-[-0.03em]">You matched the GR+ audience {agreementCount} out of {questions.length} times.</h2>
+        <p className="m-0 text-[11px] font-extrabold uppercase text-gr-action">Your results</p>
+        <h2 id="versus-title" className="m-0 mt-3 text-[25px] font-bold">You matched the GR+ audience {agreementCount} out of {questions.length} times.</h2>
         <p className="m-0 mt-3 text-sm leading-[1.45] text-gr-muted">That puts you in step with {Math.round((agreementCount / questions.length) * 100)}% of the choices RPG readers made in this demo.</p>
         <button className="mt-5 rounded-full bg-[#DC361A] px-4 py-2.5 text-sm font-bold text-white" type="button" onClick={() => { setStep(0); setPicks({}); }}>Try again</button>
       </div> : <div key={question.id} className="animate-[hub-panel-in_320ms_ease-out]">

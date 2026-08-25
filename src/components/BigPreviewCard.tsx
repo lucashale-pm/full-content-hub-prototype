@@ -12,7 +12,7 @@ function RelatedPreview({ article }: { article: BigPreviewRelated }) {
   return (
     <article className="flex min-w-[205px] max-w-[225px] flex-col gap-3 snap-start">
       <a className="no-underline" href={article.url} target="_blank" rel="noreferrer">
-        <h3 className="m-0 mt-2 line-clamp-5 text-[16px] font-semibold leading-[1.2] tracking-[-0.02em]">{article.title}</h3>
+        <h3 className="m-0 mt-2 line-clamp-5 text-[16px] font-semibold leading-[1.2]">{article.title}</h3>
       </a>
       <footer className="flex items-center gap-3 text-xs font-semibold leading-[14px] text-gr-muted">
         <span className="flex items-center gap-1" aria-label={`${article.reactionCount} reactions`}><Heart size={14} strokeWidth={2} aria-hidden="true" /><span>{article.reactionCount}</span></span>
@@ -27,7 +27,7 @@ export function BigPreviewCard() {
   return (
     <article className="relative -mx-4 w-[calc(100%+2rem)] rounded-3xl bg-black px-4 py-6 text-gr-text" aria-label={bigPreview.title}>
       <div className="flex flex-col gap-2">
-        <a className="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[#DC361A] px-2.5 py-2 text-xs font-bold uppercase tracking-[0.08em] text-white no-underline" href={bigPreview.canonicalUrl} target="_blank" rel="noreferrer">
+        <a className="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[#DC361A] px-2.5 py-2 text-xs font-bold uppercase text-white no-underline" href={bigPreview.canonicalUrl} target="_blank" rel="noreferrer">
           The Big Preview
         </a>
 
@@ -49,9 +49,9 @@ export function BigPreviewCard() {
         </a>
 
         <div className="mt-2">
-          <p className="m-0 text-xs font-bold uppercase leading-[14px] tracking-[0.08em] text-gr-action">{bigPreview.packageIntro ?? `Our biggest look yet at ${bigPreview.game}.`}</p>
+          <p className="m-0 text-xs font-bold uppercase leading-[14px] text-gr-action">{bigPreview.packageIntro ?? `Our biggest look yet at ${bigPreview.game}.`}</p>
           <a className="no-underline" href={bigPreview.canonicalUrl} target="_blank" rel="noreferrer">
-            <h2 className="m-0 mt-2 text-[26px] font-semibold leading-[1.16] tracking-[-0.03em]">{bigPreview.title}</h2>
+            <h2 className="m-0 mt-2 text-[26px] font-semibold leading-[1.16]">{bigPreview.title}</h2>
           </a>
           <p className="m-0 mt-3 text-base leading-[1.45] text-gr-subtle">{bigPreview.strapline}</p>
           <a className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-gr-action no-underline" href={bigPreview.canonicalUrl} target="_blank" rel="noreferrer">
@@ -69,7 +69,7 @@ export function BigPreviewCard() {
         </footer>
 
         <section className="pt-6" aria-labelledby="related-preview-title">
-          <h3 id="related-preview-title" className="m-0 text-xs font-extrabold uppercase tracking-[0.14em] text-gr-subtle">Related</h3>
+          <h3 id="related-preview-title" className="m-0 text-xs font-extrabold uppercase text-gr-subtle">Related</h3>
           <div className="mt-3 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 pr-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {bigPreview.related.map((article) => <RelatedPreview key={article.id} article={article} />)}
           </div>

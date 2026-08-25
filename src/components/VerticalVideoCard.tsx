@@ -41,7 +41,7 @@ export function VerticalVideoCard({ article, author }: VerticalVideoCardProps) {
         </header>
 
         <div>
-          <h2 className="m-0 text-base font-semibold leading-[1.3] tracking-[-0.02em]">{article.title}</h2>
+          <h2 className="m-0 text-base font-semibold leading-[1.3]">{article.title}</h2>
           {getArticleSummary(article) && <p className="m-0 mt-1.5 text-sm leading-[1.35] text-gr-muted">{getArticleSummary(article)}</p>}
           <a className="mt-1.5 inline-block text-sm font-bold text-gr-action no-underline" href={articleHref} target={article.canonicalUrl ? "_blank" : undefined} rel={article.canonicalUrl ? "noreferrer" : undefined}>
             Click here to read more

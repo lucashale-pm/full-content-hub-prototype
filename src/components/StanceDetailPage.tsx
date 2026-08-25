@@ -154,9 +154,9 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
       </header>
 
       <aside className="-mx-4 flex w-[calc(100%+2rem)] items-center gap-3 rounded-none border-b border-[#3b4555] bg-[#292f3c] px-4 py-3" aria-label="Stance update status">
-        <History size={18} className="shrink-0 text-[#DC361A]" aria-hidden="true" />
+        <History size={18} className="shrink-0 text-foreground" aria-hidden="true" />
         <div className="min-w-0">
-          <p className="m-0 flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase tracking-[0.08em] text-[#DC361A]">
+          <p className="m-0 flex flex-wrap items-center gap-1.5 text-xs font-bold uppercase text-foreground">
             <span>Ongoing stance</span>
             <span aria-hidden="true">•</span>
             <button
@@ -173,7 +173,7 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
       </aside>
 
       <header className="pt-6">
-        <h1 className="m-0 text-[24px] font-semibold leading-[1.18] tracking-[-0.03em]">{stance.title}</h1>
+        <h1 className="m-0 text-[24px] font-semibold leading-[1.18]">{stance.title}</h1>
 
         <div className="mt-5 flex items-center gap-2.5">
           <StanceAvatar profile={stance.author} />
@@ -209,7 +209,7 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
       </section>
 
       <section ref={engagementTriggerRef} className="border-t-2 border-[#38404e] py-6" aria-labelledby="debate-title">
-        <h2 id="debate-title" className="m-0 text-[20px] font-bold uppercase leading-[26px] tracking-[-0.02em]">The debate</h2>
+        <h2 id="debate-title" className="m-0 text-[20px] font-bold uppercase leading-[26px]">The debate</h2>
         <div className="relative mt-4 flex flex-col gap-5 before:absolute before:bottom-3 before:left-[5px] before:top-3 before:w-px before:bg-[#4b5668]">
           {stance.opinions.map((opinion) => (
             <StanceOpinionCard
@@ -226,7 +226,7 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
       <StanceVotePanel vote={stance.vote} selected={overallVote} onVote={setOverallVote} />
 
       <section className="border-t-2 border-[#38404e] py-6" aria-labelledby="comment-cta-title">
-        <h2 id="comment-cta-title" className="m-0 text-[20px] font-bold uppercase leading-[26px] tracking-[-0.02em]">{stance.commentCta.title}</h2>
+        <h2 id="comment-cta-title" className="m-0 text-[20px] font-bold uppercase leading-[26px]">{stance.commentCta.title}</h2>
         <p className="m-0 mt-2 text-sm leading-[1.45] text-gr-muted">{stance.commentCta.body}</p>
         <span className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-[#465163] px-2.5 py-1 text-xs font-semibold text-gr-subtle">
           <MessageCircle size={13} aria-hidden="true" />
@@ -235,7 +235,7 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
       </section>
 
       <section id="comments" ref={commentsRef} className="border-t-2 border-[#38404e] py-6" aria-labelledby="comments-title">
-        <h2 id="comments-title" className="m-0 text-[20px] font-bold uppercase leading-[26px] tracking-[-0.02em]">Comments</h2>
+        <h2 id="comments-title" className="m-0 text-[20px] font-bold uppercase leading-[26px]">Comments</h2>
         {replyingTo && (
           <div className="mt-4 flex items-center justify-between gap-3 rounded-3xl bg-[#292f3c] px-3 py-2 text-xs text-gr-muted">
             <span>Replying to {comments.find((comment) => comment.id === replyingTo)?.author.name}</span>
@@ -279,15 +279,15 @@ export function StanceDetailPage({ stance }: { stance: StanceRecord }) {
         <div className="fixed inset-0 z-[60] bg-[#252934] px-4 py-5 text-gr-text" role="dialog" aria-modal="true" aria-labelledby="membership-title">
           <div className="mx-auto flex min-h-full w-full max-w-[430px] flex-col">
             <header className="flex items-center justify-between">
-              <span className="text-sm font-extrabold tracking-[-0.04em] text-white">GAMESRADAR</span>
+              <span className="text-sm font-extrabold text-white">GAMESRADAR</span>
               <button className="inline-flex size-9 items-center justify-center border-0 bg-transparent text-gr-subtle hover:text-white" type="button" aria-label="Close membership prompt" onClick={() => setMembershipOpen(false)}>
                 <X size={20} aria-hidden="true" />
               </button>
             </header>
 
             <div className="flex flex-1 flex-col justify-center py-10">
-              <p className="m-0 text-xs font-bold uppercase tracking-[0.12em] text-gr-action">GamesRadar membership</p>
-              <h2 id="membership-title" className="m-0 mt-3 text-[28px] font-semibold leading-[1.12] tracking-[-0.03em]">Follow the games you care about.</h2>
+              <p className="m-0 text-xs font-bold uppercase text-gr-action">GamesRadar membership</p>
+              <h2 id="membership-title" className="m-0 mt-3 text-[28px] font-semibold leading-[1.12]">Follow the games you care about.</h2>
               <p className="m-0 mt-4 text-base leading-[1.5] text-gr-subtle">Become a member to keep up with Helldivers 2 and get notified when a new viewpoint is added to this Stance.</p>
 
               <ul className="m-0 mt-7 flex list-none flex-col gap-4 p-0">

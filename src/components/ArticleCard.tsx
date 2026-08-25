@@ -63,8 +63,8 @@ export function ArticleCard({ article, author, isSaved = false, isReacted = fals
               </div>
             )}
             <div className={article.thumbnail ? "mt-3" : ""}>
-              <p className="m-0 text-[11px] font-bold uppercase tracking-[0.08em] text-gr-action">{editorialContext.label}</p>
-              <h2 className="m-0 mt-1.5 text-[20px] font-semibold leading-[1.25] tracking-[-0.025em]">{article.title}</h2>
+              <p className="m-0 text-[11px] font-bold uppercase text-gr-action">{editorialContext.label}</p>
+              <h2 className="m-0 mt-1.5 text-[20px] font-semibold leading-[1.25]">{article.title}</h2>
               <p className="m-0 mt-2 line-clamp-3 text-sm leading-[1.45] text-gr-subtle">{editorialContext.copy}</p>
             </div>
           </a>
@@ -77,7 +77,7 @@ export function ArticleCard({ article, author, isSaved = false, isReacted = fals
               rel={article.canonicalUrl ? "noreferrer" : undefined}
             >
               <div className="min-w-0 flex-1">
-                <h2 className="m-0 line-clamp-2 text-base font-semibold leading-[1.3] tracking-[-0.02em]">{article.title}</h2>
+                <h2 className="m-0 line-clamp-2 text-base font-semibold leading-[1.3]">{article.title}</h2>
                 {getArticleSummary(article) && <p className="m-0 mt-1.5 line-clamp-2 text-sm leading-[1.35] text-gr-muted">{getArticleSummary(article)}</p>}
               </div>
               {article.thumbnail && (
