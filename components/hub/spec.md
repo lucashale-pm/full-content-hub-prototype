@@ -56,6 +56,9 @@ into the chronological /feed experience.
   Hub video embed uses the surrounding section rhythm without adding a duplicate rule.
 - The feed begins with a normal-flow “Back to RPG Hub” banner. It is intentionally not
   sticky and resolves the correct local root for both local and GitHub Pages paths.
+- The Hub logo uses the same root-path helper. Bare `/stance/` paths normalise back to
+  the Hub root instead of rendering Hub content under a stance URL, and the section
+  menu stays inside the 430px mobile canvas rather than using browser viewport width.
 - The Stance and Timeline copy is sourced from the supplied Figma Make baseline:
   five dated coverage moments, Ali Jones’s turn-based Stance, and Josh West’s
   focused-campaigns Stance.

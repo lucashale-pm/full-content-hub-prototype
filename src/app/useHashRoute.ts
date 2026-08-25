@@ -14,14 +14,29 @@ function readRoute(): Route {
   return match ? { name: "item", id: decodeURIComponent(match[1]) } : { name: "hub" };
 }
 
+function normaliseRouteUrl() {
+  const redirectPath = new URLSearchParams(window.location.search).get("redirect");
+  const candidate = redirectPath ? new URL(redirectPath, window.location.origin) : new URL(window.location.href);
+  const isBareStancePath = /(?:^|\/)stance\/?$/.test(candidate.pathname);
+
+  if (isBareStancePath) {
+    const hubPath = candidate.pathname.replace(/\/stance\/?$/, "/") || "/";
+    window.history.replaceState({}, "", `${hubPath}${candidate.search}${candidate.hash}`);
+    return;
+  }
+
+  if (redirectPath) window.history.replaceState({}, "", redirectPath);
+}
+
 export function useHashRoute(): Route {
   const [route, setRoute] = useState(readRoute);
 
   useEffect(() => {
-    const redirectPath = new URLSearchParams(window.location.search).get("redirect");
-    if (redirectPath) window.history.replaceState({}, "", redirectPath);
-
-    const updateRoute = () => setRoute(readRoute());
+    const updateRoute = () => {
+      normaliseRouteUrl();
+      setRoute(readRoute());
+    };
+    updateRoute();
     window.addEventListener("hashchange", updateRoute);
     window.addEventListener("popstate", updateRoute);
     return () => {

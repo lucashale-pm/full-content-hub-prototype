@@ -45,7 +45,7 @@ export function HubPage({ articles, authors }: HubPageProps) {
         <p className="m-0 mt-3 text-sm leading-[1.5] text-[#e2e2e5]">{hub.description}</p>
         <button className={"mt-6 w-full rounded-full px-4 py-2.5 text-sm font-bold " + (following ? "bg-[#3c4657] text-white" : "bg-[#DC361A] text-white")} type="button" aria-pressed={following} onClick={() => setFollowing((value) => !value)}>{following ? "Following" : "Follow"}</button>
       </div>
-      <HubSectionLinks className="relative left-1/2 w-screen -translate-x-1/2 border-t border-white/20 bg-black/60 px-4 py-3 backdrop-blur-sm" />
+      <HubSectionLinks className="relative -mx-4 w-[calc(100%+2rem)] border-t border-white/20 bg-black/60 px-4 py-3 backdrop-blur-sm" />
     </section>
 
     <section id="featured" className="scroll-mt-28 py-8" aria-labelledby="featured-title">

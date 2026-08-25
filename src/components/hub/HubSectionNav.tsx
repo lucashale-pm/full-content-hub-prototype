@@ -1,6 +1,6 @@
 import { Menu, Newspaper, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { getFeedPath } from "../../app/useHashRoute";
+import { getFeedPath, getHubPath } from "../../app/useHashRoute";
 
 export const hubSections = [
   { id: "featured", label: "Featured" },
@@ -58,7 +58,7 @@ export function HubSectionNav() {
   return (
     <header className={`sticky top-0 z-30 -mx-4 w-[calc(100%+2rem)] border-b border-[#38404e] bg-black shadow-lg shadow-black/20 transition-transform duration-300 ease-out ${visible ? "translate-y-0" : "-translate-y-full"}`}>
       <div className="flex items-center justify-between px-4 py-2.5">
-        <a className="inline-flex items-center no-underline" href="./" aria-label="GamesRadar RPG hub">
+        <a className="inline-flex items-center no-underline" href={getHubPath()} aria-label="GamesRadar RPG hub">
           <img className="block h-6 w-auto" src="https://cdn.mos.cms.futurecdn.net/flexiimages/l3fqzehadb1768907286.svg" alt="GamesRadar" />
         </a>
         <div className="flex items-center gap-1 text-gr-subtle">
