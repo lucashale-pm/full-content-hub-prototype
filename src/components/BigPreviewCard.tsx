@@ -69,7 +69,7 @@ export function BigPreviewCard() {
         </footer>
 
         <section className="pt-6" aria-labelledby="related-preview-title">
-          <h3 id="related-preview-title" className="m-0 text-xs font-extrabold uppercase text-gr-subtle">Related</h3>
+          <h3 id="related-preview-title" className="m-0 text-xs font-semibold uppercase text-gr-subtle">Related</h3>
           <div className="mt-3 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 pr-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {bigPreview.related.map((article) => <RelatedPreview key={article.id} article={article} />)}
           </div>

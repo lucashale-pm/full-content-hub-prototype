@@ -42,8 +42,7 @@ function EditorialStanceCard({ stance, onEngagement }: { stance: HubEditorialSta
 
 export function HubEditorialStances({ stances, onEngagement }: { stances: HubEditorialStance[]; onEngagement?: (message: string) => void }) {
   return <section id="stances" className="scroll-mt-28 border-t border-[#38404e] py-8" aria-labelledby="stances-title">
-    <p className="m-0 text-[11px] font-extrabold uppercase text-gr-muted">Editor stances</p>
-    <h2 id="stances-title" className="m-0 mt-1 text-[24px] font-bold">Bold viewpoints from our lead columnists</h2>
+    <h2 id="stances-title" className="m-0 mt-1 text-[24px] font-bold">Stances &amp; talking points</h2>
     <div className="mt-5 space-y-3">{stances.map((stance) => <EditorialStanceCard key={stance.id} stance={stance} onEngagement={onEngagement} />)}</div>
   </section>;
 }

@@ -9,7 +9,7 @@ const waysToContribute = [
 
 export function HubMakeYourMark() {
   return <section className="border-t border-[#38404e] py-8" aria-labelledby="make-your-mark-title">
-    <p className="m-0 text-[11px] font-extrabold uppercase text-gr-muted">Share your expertise</p>
+    <p className="m-0 text-[11px] font-semibold uppercase text-gr-muted">Share your expertise</p>
     <h2 id="make-your-mark-title" className="m-0 mt-1 text-[32px] font-semibold">Make Your Mark</h2>
 
     <div className="mt-6 rounded-3xl border border-white/10 bg-[#16161a] p-4">

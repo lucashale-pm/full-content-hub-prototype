@@ -26,7 +26,7 @@ export function HubHotTakes({ takes, onEngagement }: { takes: HubDocument["hotTa
   onEngagement?: (message: string) => void;
 }) {
   return <section id="takes" className="scroll-mt-28 border-t border-[#38404e] py-8" aria-labelledby="takes-title">
-    <p className="m-0 text-[11px] font-extrabold uppercase text-gr-muted">Quick reactions</p>
+    <p className="m-0 text-[11px] font-semibold uppercase text-gr-muted">Quick reactions</p>
     <h2 id="takes-title" className="m-0 mt-1 text-[24px] font-bold">How hot are these takes?</h2>
     <p className="m-0 mt-2 text-sm leading-[1.4] text-gr-muted">Rate each editor take, then see how the community voted.</p>
     <div className="mt-5 space-y-3">{takes.map((take) => <HotTakeCard key={take.id} take={take} onEngagement={onEngagement} />)}</div>
@@ -55,9 +55,9 @@ export function HubVersus({ versus }: { versus: HubDocument["versus"] }) {
 
   return <section id="versus" className="scroll-mt-28 border-t border-[#38404e] py-8" aria-labelledby="versus-title">
     <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4">
-      <div className="flex items-center justify-between gap-3"><p className="m-0 text-[11px] font-extrabold uppercase text-gr-muted">This or that</p>{!complete && <span className="text-xs text-gr-muted">{step + 1} of {questions.length}</span>}</div>
+      <div className="flex items-center justify-between gap-3"><p className="m-0 text-[11px] font-semibold uppercase text-gr-muted">This or that</p>{!complete && <span className="text-xs text-gr-muted">{step + 1} of {questions.length}</span>}</div>
       {complete ? <div className="animate-[hub-panel-in_320ms_ease-out] py-5 text-center">
-        <p className="m-0 text-[11px] font-extrabold uppercase text-gr-action">Your results</p>
+        <p className="m-0 text-[11px] font-semibold uppercase text-gr-action">Your results</p>
         <h2 id="versus-title" className="m-0 mt-3 text-[25px] font-bold">You matched the GR+ audience {agreementCount} out of {questions.length} times.</h2>
         <p className="m-0 mt-3 text-sm leading-[1.45] text-gr-muted">That puts you in step with {Math.round((agreementCount / questions.length) * 100)}% of the choices RPG readers made in this demo.</p>
         <button className="mt-5 rounded-full bg-[#DC361A] px-4 py-2.5 text-sm font-bold text-white" type="button" onClick={() => { setStep(0); setPicks({}); }}>Try again</button>

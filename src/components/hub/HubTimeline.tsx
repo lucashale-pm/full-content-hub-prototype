@@ -8,7 +8,7 @@ export function HubTimeline({ items }: { items: HubTimelineItem[] }) {
 
   return (
     <section id="timeline" className="scroll-mt-28 border-t border-[#38404e] py-8" aria-labelledby="timeline-title">
-      <p className="m-0 text-[11px] font-extrabold uppercase text-gr-muted">How we covered it</p>
+      <p className="m-0 text-[11px] font-semibold uppercase text-gr-muted">How we covered it</p>
       <h2 id="timeline-title" className="m-0 mt-1 text-[24px] font-bold">The RPG year through our editors’ eyes</h2>
       <div className="mt-5">
         {items.map((item, index) => {
@@ -16,8 +16,8 @@ export function HubTimeline({ items }: { items: HubTimelineItem[] }) {
           return <article key={item.id} className="grid grid-cols-[76px_minmax(0,1fr)] gap-3">
             <div className="relative pt-3">
               {index < items.length - 1 && <span className="absolute left-1 top-5 h-[calc(100%+1rem)] border-l border-[#495365]" aria-hidden="true" />}
-              <span className={"relative z-10 inline-block size-2.5 rounded-full " + (index === 0 ? "bg-[#ff6b00]" : "bg-[#808080]")} aria-hidden="true" />
-              <span className={"ml-1.5 align-middle text-[10px] font-bold " + (index === 0 ? "text-[#ff8d4b]" : "text-gr-muted")}>{item.date}</span>
+              <span className={"relative z-10 inline-block size-2.5 rounded-full " + (open ? "bg-gr-action" : "bg-[#808080]")} aria-hidden="true" />
+              <span className={"ml-1.5 align-middle text-[10px] font-bold " + (open ? "text-gr-action" : "text-gr-muted")}>{item.date}</span>
             </div>
             <div className="border-b border-[#38404e] pb-3">
               <button className="flex w-full items-center gap-3 border-0 bg-transparent py-3 text-left" type="button" aria-expanded={open} onClick={() => toggle(item.id)}>
