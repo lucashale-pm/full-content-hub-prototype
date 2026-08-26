@@ -8,9 +8,10 @@
     <script>
       const path = window.location.pathname;
       const stanceIndex = path.indexOf("/stance/");
+      const desktopIndex = path.endsWith("/desktop") ? path.lastIndexOf("/desktop") : -1;
       const feedIndex = path.endsWith("/feed") ? path.lastIndexOf("/feed") : -1;
       const titleCardsIndex = path.endsWith("/title-cards") ? path.lastIndexOf("/title-cards") : -1;
-      const markerIndex = stanceIndex >= 0 ? stanceIndex : feedIndex >= 0 ? feedIndex : titleCardsIndex;
+      const markerIndex = stanceIndex >= 0 ? stanceIndex : desktopIndex >= 0 ? desktopIndex : feedIndex >= 0 ? feedIndex : titleCardsIndex;
       const basePath = markerIndex >= 0 ? path.slice(0, markerIndex) || "/" : "/";
       const query = window.location.search;
       const hash = window.location.hash;

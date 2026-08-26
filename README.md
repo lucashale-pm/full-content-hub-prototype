@@ -14,8 +14,10 @@ npm run dev
 ## Project choices
 
 - Vite + React + TypeScript + Tailwind CSS.
-- A 430px maximum mobile canvas; desktop is only a centred preview surface.
-- Path routes keep the RPG Hub at `/`, the chronological feed at `/feed`, and Stances at
+- A 430px maximum mobile canvas for the Hub, Feed, and Stance pages; `/desktop` is an
+  isolated 1200px desktop Hub composition reusing the same content and components.
+- Path routes keep the RPG Hub at `/`, the chronological feed at `/feed`, the desktop
+  Hub prototype at `/desktop`, and Stances at
   `/stance/<id>`; the Pages fallback preserves direct links for the static deployment.
 - The feed is assembled in `src/app/App.tsx` from reusable cards. Its current sequence
   includes compact/context article cards, a Stance update, the Stance card, vertical and

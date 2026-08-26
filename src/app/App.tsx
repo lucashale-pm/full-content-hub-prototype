@@ -56,6 +56,13 @@ export function App() {
 
   return (
     route.name === "title-cards" ? <TitleCardsPage /> :
+    route.name === "desktop" ? (
+      <main className="min-h-dvh bg-gr-page text-gr-text">
+        <section className="mx-auto w-full max-w-[1200px] px-4 py-6" aria-live="polite">
+          <HubPage articles={articleById} authors={authorPool} layout="desktop" />
+        </section>
+      </main>
+    ) :
     <MobileShell>
       {route.name === "hub" ? (
         <section className="px-4" aria-live="polite">

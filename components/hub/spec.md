@@ -77,11 +77,19 @@ into the chronological /feed experience.
   preview, and two participation prompts. It is a live component based on the supplied
   visual reference, rather than an embedded screenshot, so its typography and actions
   stay aligned with the Hub.
+- `/desktop` is an isolated desktop composition of the same Hub data and child
+  components. Its 1200px shell puts the main editorial journey in the left two-thirds
+  and a sticky, independently scrollable “Latest RPG updates” rail in the right third.
+  The rail renders the existing standard ArticleCard from feed.json, so it does not
+  introduce a second content model or alter the mobile Hub and Feed.
+- The desktop feed rail owns a scoped dark scrollbar with an orange hover affordance;
+  page and mobile scrollbars retain their browser defaults.
 
 ## Constraints
 
-- Mobile-only, 430px maximum canvas; Figtree, existing GamesRadar palette, and
-  rounded-3xl surfaces.
+- `/` and `/feed` remain mobile-only with a 430px maximum canvas. `/desktop` uses a
+  1200px maximum desktop canvas while retaining Figtree, the existing GamesRadar
+  palette, and rounded-3xl surfaces.
 - Use Lucide icons for interface controls; the hot-take rating scale deliberately uses
   the supplied emoji vocabulary.
 - All engagement is local prototype state: no identity, persistence, analytics,

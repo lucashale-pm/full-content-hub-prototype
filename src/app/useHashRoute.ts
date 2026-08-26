@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
-export type Route = { name: "hub" } | { name: "feed" } | { name: "title-cards" } | { name: "item"; id: string } | { name: "stance"; id: string };
+export type Route = { name: "hub" } | { name: "desktop" } | { name: "feed" } | { name: "title-cards" } | { name: "item"; id: string } | { name: "stance"; id: string };
 
 function readRoute(): Route {
   const redirectPath = new URLSearchParams(window.location.search).get("redirect");
   const pathname = redirectPath ? new URL(redirectPath, window.location.origin).pathname : window.location.pathname;
   const stanceMatch = pathname.match(/(?:^|\/)stance\/([^/]+)$/);
   if (stanceMatch) return { name: "stance", id: decodeURIComponent(stanceMatch[1]) };
+  if (/(?:^|\/)desktop\/?$/.test(pathname)) return { name: "desktop" };
   if (/(?:^|\/)title-cards\/?$/.test(pathname)) return { name: "title-cards" };
   if (/(?:^|\/)feed\/?$/.test(pathname)) return { name: "feed" };
 
@@ -62,7 +63,7 @@ export function getHubPath() {
 
 function getAppPath(path: string) {
   const pathname = window.location.pathname.replace(/\/$/, "");
-  const routeMarker = pathname.match(/^(.*?)(?:\/(?:feed|stance)(?:\/.*)?$)/);
+  const routeMarker = pathname.match(/^(.*?)(?:\/(?:desktop|feed|stance)(?:\/.*)?$)/);
   const base = routeMarker ? routeMarker[1] : pathname;
   return `${base || ""}/${path}`.replace(/^([^/])/, "/$1");
 }

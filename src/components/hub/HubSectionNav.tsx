@@ -15,8 +15,9 @@ export function scrollToHubSection(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-export function HubSectionLinks({ className = "" }: { className?: string }) {
-  return <nav className={`flex items-center justify-between gap-1 overflow-visible ${className}`} aria-label="Hub sections">
+export function HubSectionLinks({ className = "", alignment = "distributed" }: { className?: string; alignment?: "distributed" | "start" }) {
+  const alignmentClass = alignment === "start" ? "justify-start gap-8" : "justify-between gap-1";
+  return <nav className={`flex items-center ${alignmentClass} overflow-visible ${className}`} aria-label="Hub sections">
     {hubSections.map((section) => <button key={section.id} className="min-w-0 whitespace-nowrap border-0 bg-transparent p-0 text-[14px] font-semibold text-gr-subtle hover:text-gr-action" type="button" onClick={() => scrollToHubSection(section.id)}>{section.label}</button>)}
   </nav>;
 }

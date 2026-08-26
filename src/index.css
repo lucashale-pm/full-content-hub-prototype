@@ -23,6 +23,21 @@ button, input, textarea { font: inherit; }
 
 a { color: inherit; }
 
+/* Scoped to the desktop Hub feed rail, preserving browser-default page scrollbars. */
+.desktop-feed-rail__scroll {
+  scrollbar-color: #596274 #161a22;
+  scrollbar-width: thin;
+}
+
+.desktop-feed-rail__scroll::-webkit-scrollbar { width: 10px; }
+.desktop-feed-rail__scroll::-webkit-scrollbar-track { background: #161a22; }
+.desktop-feed-rail__scroll::-webkit-scrollbar-thumb {
+  border: 3px solid #161a22;
+  border-radius: 999px;
+  background: #596274;
+}
+.desktop-feed-rail__scroll::-webkit-scrollbar-thumb:hover { background: #fe6700; }
+
 @keyframes hub-panel-in {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
